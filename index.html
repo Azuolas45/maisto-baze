@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Maisto bazė</title>
+<meta name="theme-color" content="#14181D">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14181D;
+    --surface:#1B2129;
+    --line:#2A323C;
+    --text:#E9E6E0;
+    --muted:#89919E;
+    --brass:#C9A66B;
+    --clay:#B07B5E;
+    --slate:#7E93A8;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Archivo',system-ui,sans-serif;
+    font-variant-numeric:tabular-nums;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:88px;
+    min-height:100vh;
+  }
+
+  .wrap{max-width:520px;margin:0 auto;padding:0 20px}
+
+  /* --- antraštė --- */
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:28px 0 32px;
+  }
+  .eyebrow{
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .date{font-size:13px;color:var(--muted)}
+
+  /* --- pagrindiniai skaičiai --- */
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .stat .num{
+    font-size:46px;
+    font-weight:600;
+    line-height:1;
+    letter-spacing:-.03em;
+  }
+  .stat .num.over{color:var(--clay)}
+  .stat .lbl{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:6px;
+    letter-spacing:.02em;
+  }
+  .meter{
+    height:2px;
+    background:var(--line);
+    margin-top:14px;
+    overflow:hidden;
+  }
+  .meter i{
+    display:block;
+    height:100%;
+    width:0;
+    background:var(--brass);
+    transition:width .4s ease;
+  }
+  .stat:nth-child(2) .meter i{background:var(--slate)}
+
+  /* --- smulkūs makro --- */
+  .minor{
+    display:flex;
+    gap:28px;
+    margin-top:26px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+  .minor div{font-size:13px;color:var(--muted)}
+  .minor b{color:var(--text);font-weight:600}
+
+  /* --- sekcijos --- */
+  section{margin-top:38px}
+  h2{
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:14px;
+  }
+
+  .empty{
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:26px 20px;
+    text-align:center;
+  }
+  .empty p{font-size:14px;color:var(--muted);line-height:1.5}
+
+  button{
+    font-family:inherit;
+    cursor:pointer;
+    border:none;
+  }
+  .btn{
+    width:100%;
+    margin-top:14px;
+    padding:15px;
+    background:var(--brass);
+    color:#14181D;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:.01em;
+  }
+  .btn:active{opacity:.85}
+
+  /* --- tikslai --- */
+  .goals{
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:6px 18px;
+  }
+  .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .row:last-child{border-bottom:none}
+  .row label{font-size:14px}
+  .row input{
+    width:88px;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--line);
+    color:var(--brass);
+    font-family:inherit;
+    font-variant-numeric:tabular-nums;
+    font-size:15px;
+    font-weight:600;
+    text-align:right;
+    padding:3px 2px;
+  }
+  .row input:focus{outline:none;border-bottom-color:var(--brass)}
+
+  .saved{
+    font-size:12px;
+    color:var(--muted);
+    text-align:center;
+    margin-top:12px;
+    height:14px;
+    opacity:0;
+    transition:opacity .2s;
+  }
+  .saved.show{opacity:1}
+
+  /* --- navigacija --- */
+  nav{
+    position:fixed;
+    bottom:0;left:0;right:0;
+    background:var(--bg);
+    border-top:1px solid var(--line);
+    display:flex;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  nav button{
+    flex:1;
+    background:none;
+    color:var(--muted);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:18px 4px;
+    border-top:2px solid transparent;
+    margin-top:-1px;
+  }
+  nav button.on{color:var(--text);border-top-color:var(--brass)}
+  nav button:focus-visible,.btn:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+
+  .panel{display:none}
+  .panel.on{display:block}
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <span class="eyebrow">Maisto bazė</span>
+    <span class="date" id="date"></span>
+  </header>
+
+  <!-- ŠIANDIEN -->
+  <div class="panel on" id="p-siandien">
+
+    <div class="hero">
+      <div class="stat">
+        <div class="num" id="kcal">0</div>
+        <div class="lbl">kcal liko</div>
+        <div class="meter"><i id="m-kcal"></i></div>
+      </div>
+      <div class="stat">
+        <div class="num" id="prot">0</div>
+        <div class="lbl">g baltymų liko</div>
+        <div class="meter"><i id="m-prot"></i></div>
+      </div>
+    </div>
+
+    <div class="minor">
+      <div>Angliavandeniai <b id="carb">0</b> g</div>
+      <div>Riebalai <b id="fat">0</b> g</div>
+    </div>
+
+    <section>
+      <h2>Valgiai</h2>
+      <div class="empty">
+        <p>Šiandien dar nieko neužfiksuota.</p>
+      </div>
+      <button class="btn" onclick="alert('Valgių fiksavimas — kitas žingsnis. Pirma reikia produktų.')">Pridėti valgį</button>
+    </section>
+
+    <section>
+      <h2>Dienos tikslai</h2>
+      <div class="goals">
+        <div class="row"><label for="t-kcal">Kalorijos</label><input id="t-kcal" type="number" inputmode="numeric"></div>
+        <div class="row"><label for="t-prot">Baltymai, g</label><input id="t-prot" type="number" inputmode="numeric"></div>
+        <div class="row"><label for="t-carb">Angliavandeniai, g</label><input id="t-carb" type="number" inputmode="numeric"></div>
+        <div class="row"><label for="t-fat">Riebalai, g</label><input id="t-fat" type="number" inputmode="numeric"></div>
+      </div>
+      <div class="saved" id="saved">Išsaugota</div>
+    </section>
+
+  </div>
+
+  <!-- PRODUKTAI -->
+  <div class="panel" id="p-produktai">
+    <section style="margin-top:0">
+      <h2>Produktai</h2>
+      <div class="empty">
+        <p>Čia gyvens tavo produktai su tikromis vertėmis iš etikečių.<br>Tuščia, kol nesuvesi pirmo.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- RECEPTAI -->
+  <div class="panel" id="p-receptai">
+    <section style="margin-top:0">
+      <h2>Receptai</h2>
+      <div class="empty">
+        <p>Receptas — tai keli produktai, sudėti kartu.<br>Pirma produktai, paskui receptai.</p>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+<nav>
+  <button class="on" data-p="siandien">Šiandien</button>
+  <button data-p="produktai">Produktai</button>
+  <button data-p="receptai">Receptai</button>
+</nav>
+
+<script>
+// ---- pradiniai tikslai (gali keisti ekrane) ----
+const NUMATYTA = { kcal:3100, prot:150, carb:445, fat:80 };
+
+// ---- tikslų įkėlimas iš telefono atminties ----
+function gautiTikslus(){
+  try{
+    const issaugota = localStorage.getItem('tikslai');
+    return issaugota ? JSON.parse(issaugota) : { ...NUMATYTA };
+  }catch(e){
+    return { ...NUMATYTA };
+  }
+}
+
+let tikslai = gautiTikslus();
+
+// ---- šiandienos suvestinė (kol kas nieko nesuvalgyta) ----
+const suvalgyta = { kcal:0, prot:0, carb:0, fat:0 };
+
+function perpiesti(){
+  const likoKcal = tikslai.kcal - suvalgyta.kcal;
+  const likoProt = tikslai.prot - suvalgyta.prot;
+
+  const eKcal = document.getElementById('kcal');
+  const eProt = document.getElementById('prot');
+  eKcal.textContent = likoKcal;
+  eProt.textContent = likoProt;
+  eKcal.classList.toggle('over', likoKcal < 0);
+  eProt.classList.toggle('over', likoProt < 0);
+
+  document.getElementById('carb').textContent = tikslai.carb - suvalgyta.carb;
+  document.getElementById('fat').textContent  = tikslai.fat  - suvalgyta.fat;
+
+  const dalis = (a,b) => Math.min(100, b > 0 ? (a/b)*100 : 0) + '%';
+  document.getElementById('m-kcal').style.width = dalis(suvalgyta.kcal, tikslai.kcal);
+  document.getElementById('m-prot').style.width = dalis(suvalgyta.prot, tikslai.prot);
+}
+
+// laukus užpildom tik atidarant — kitaip trintų skaičių berašant
+function uzpildytiLaukus(){
+  document.getElementById('t-kcal').value = tikslai.kcal;
+  document.getElementById('t-prot').value = tikslai.prot;
+  document.getElementById('t-carb').value = tikslai.carb;
+  document.getElementById('t-fat').value  = tikslai.fat;
+}
+
+// ---- tikslų keitimas ir išsaugojimas ----
+const laukai = { kcal:'t-kcal', prot:'t-prot', carb:'t-carb', fat:'t-fat' };
+let laikmatis;
+
+Object.entries(laukai).forEach(([raktas, id]) => {
+  document.getElementById(id).addEventListener('input', e => {
+    const reiksme = parseInt(e.target.value, 10);
+    tikslai[raktas] = isNaN(reiksme) ? 0 : reiksme;
+    localStorage.setItem('tikslai', JSON.stringify(tikslai));
+
+    const zenklas = document.getElementById('saved');
+    zenklas.classList.add('show');
+    clearTimeout(laikmatis);
+    laikmatis = setTimeout(() => zenklas.classList.remove('show'), 1400);
+
+    perpiesti();
+  });
+});
+
+// ---- navigacija tarp ekranų ----
+document.querySelectorAll('nav button').forEach(mygtukas => {
+  mygtukas.addEventListener('click', () => {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('on'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+    mygtukas.classList.add('on');
+    document.getElementById('p-' + mygtukas.dataset.p).classList.add('on');
+  });
+});
+
+// ---- data ----
+document.getElementById('date').textContent =
+  new Date().toLocaleDateString('lt-LT', { month:'long', day:'numeric' });
+
+uzpildytiLaukus();
+perpiesti();
+</script>
+
+</body>
+</html>

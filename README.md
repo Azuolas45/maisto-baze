@@ -1,1 +1,2 @@
 # maisto-baze
+pwd
