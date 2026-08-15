@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Maisto bazė</title>
 <meta name="theme-color" content="#14181D">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,22 +21,17 @@
     --clay:#B07B5E;
     --slate:#7E93A8;
   }
-
-  *{box-sizing:border-box;margin:0;padding:0}
-
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   body{
     background:var(--bg);
     color:var(--text);
     font-family:'Archivo',system-ui,sans-serif;
     font-variant-numeric:tabular-nums;
     -webkit-font-smoothing:antialiased;
-    padding-bottom:88px;
+    padding-bottom:92px;
     min-height:100vh;
   }
-
   .wrap{max-width:520px;margin:0 auto;padding:0 20px}
-
-  /* --- antraštė --- */
   header{
     display:flex;
     justify-content:space-between;
@@ -44,176 +39,211 @@
     padding:28px 0 32px;
   }
   .eyebrow{
-    font-size:11px;
-    font-weight:600;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-    color:var(--muted);
+    font-size:11px;font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted);
   }
   .date{font-size:13px;color:var(--muted)}
-
-  /* --- pagrindiniai skaičiai --- */
   .hero{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  .stat .num{
-    font-size:46px;
-    font-weight:600;
-    line-height:1;
-    letter-spacing:-.03em;
-  }
+  .stat .num{font-size:46px;font-weight:600;line-height:1;letter-spacing:-.03em}
   .stat .num.over{color:var(--clay)}
-  .stat .lbl{
-    font-size:12px;
-    color:var(--muted);
-    margin-top:6px;
-    letter-spacing:.02em;
-  }
-  .meter{
-    height:2px;
-    background:var(--line);
-    margin-top:14px;
-    overflow:hidden;
-  }
-  .meter i{
-    display:block;
-    height:100%;
-    width:0;
-    background:var(--brass);
-    transition:width .4s ease;
-  }
+  .stat .lbl{font-size:12px;color:var(--muted);margin-top:6px}
+  .meter{height:2px;background:var(--line);margin-top:14px;overflow:hidden}
+  .meter i{display:block;height:100%;width:0;background:var(--brass);transition:width .4s ease}
   .stat:nth-child(2) .meter i{background:var(--slate)}
-
-  /* --- smulkūs makro --- */
   .minor{
-    display:flex;
-    gap:28px;
-    margin-top:26px;
-    padding-top:18px;
+    display:flex;gap:28px;margin-top:26px;padding-top:18px;
     border-top:1px solid var(--line);
   }
   .minor div{font-size:13px;color:var(--muted)}
   .minor b{color:var(--text);font-weight:600}
-
-  /* --- sekcijos --- */
   section{margin-top:38px}
   h2{
-    font-size:11px;
-    font-weight:600;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-    color:var(--muted);
-    margin-bottom:14px;
+    font-size:11px;font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:14px;
+    display:flex;justify-content:space-between;align-items:center;
   }
-
+  h2 .hint{letter-spacing:0;text-transform:none;font-weight:400;font-size:11px}
   .empty{
-    background:var(--surface);
-    border:1px solid var(--line);
-    padding:26px 20px;
-    text-align:center;
+    background:var(--surface);border:1px solid var(--line);
+    padding:26px 20px;text-align:center;
   }
   .empty p{font-size:14px;color:var(--muted);line-height:1.5}
-
-  button{
-    font-family:inherit;
-    cursor:pointer;
-    border:none;
-  }
+  button{font-family:inherit;cursor:pointer;border:none;color:inherit}
   .btn{
-    width:100%;
-    margin-top:14px;
-    padding:15px;
-    background:var(--brass);
-    color:#14181D;
-    font-size:14px;
-    font-weight:600;
-    letter-spacing:.01em;
+    width:100%;margin-top:14px;padding:15px;
+    background:var(--brass);color:#14181D;
+    font-size:14px;font-weight:600;
   }
   .btn:active{opacity:.85}
-
-  /* --- tikslai --- */
-  .goals{
-    background:var(--surface);
-    border:1px solid var(--line);
-    padding:6px 18px;
+  .btn-ghost{
+    width:100%;margin-top:10px;padding:13px;
+    background:transparent;border:1px solid var(--line);
+    color:var(--muted);font-size:13px;
   }
+  /* --- valgių sąrašas --- */
+  .list{background:var(--surface);border:1px solid var(--line)}
+  .item{
+    display:flex;align-items:center;gap:12px;
+    padding:14px 16px;border-bottom:1px solid var(--line);
+  }
+  .item:last-child{border-bottom:none}
+  .item .txt{flex:1;min-width:0}
+  .item .pav{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .item .sub{font-size:12px;color:var(--muted);margin-top:3px}
+  .item .val{font-size:13px;text-align:right;white-space:nowrap}
+  .item .val b{color:var(--brass);font-weight:600}
+  .item .val span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+  .item .x{
+    background:none;color:var(--muted);font-size:18px;
+    padding:4px 2px 4px 8px;line-height:1;
+  }
+  /* --- produktų sąrašas --- */
+  .search{
+    width:100%;background:var(--surface);border:1px solid var(--line);
+    color:var(--text);font-family:inherit;font-size:15px;
+    padding:13px 15px;margin-bottom:14px;
+  }
+  .search:focus{outline:none;border-color:var(--brass)}
+  .search::placeholder{color:var(--muted)}
+  .prod{
+    display:flex;align-items:center;gap:12px;width:100%;
+    background:none;padding:14px 16px;border-bottom:1px solid var(--line);
+    text-align:left;
+  }
+  .prod:last-child{border-bottom:none}
+  .prod:active{background:#20272F}
+  .prod .txt{flex:1;min-width:0}
+  .prod .pav{font-size:14px}
+  .prod .sub{font-size:12px;color:var(--muted);margin-top:3px}
+  .prod .val{font-size:13px;text-align:right;white-space:nowrap;color:var(--muted)}
+  .prod .val b{color:var(--text);font-weight:600}
+  /* --- tikslai --- */
+  .goals{background:var(--surface);border:1px solid var(--line);padding:6px 18px}
   .row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:13px 0;
-    border-bottom:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+    padding:13px 0;border-bottom:1px solid var(--line);
   }
   .row:last-child{border-bottom:none}
   .row label{font-size:14px}
   .row input{
-    width:88px;
-    background:transparent;
-    border:none;
-    border-bottom:1px solid var(--line);
-    color:var(--brass);
-    font-family:inherit;
-    font-variant-numeric:tabular-nums;
-    font-size:15px;
-    font-weight:600;
-    text-align:right;
-    padding:3px 2px;
+    width:88px;background:transparent;border:none;
+    border-bottom:1px solid var(--brass);
+    color:var(--brass);font-family:inherit;font-variant-numeric:tabular-nums;
+    font-size:15px;font-weight:600;text-align:right;padding:3px 2px;
   }
-  .row input:focus{outline:none;border-bottom-color:var(--brass)}
-
+  .row input:focus{outline:none}
   .saved{
-    font-size:12px;
-    color:var(--muted);
-    text-align:center;
-    margin-top:12px;
-    height:14px;
-    opacity:0;
-    transition:opacity .2s;
+    font-size:12px;color:var(--muted);text-align:center;
+    margin-top:12px;height:14px;opacity:0;transition:opacity .2s;
   }
   .saved.show{opacity:1}
-
+  /* --- SVORIS --- */
+  #sv-data{width:150px;color-scheme:dark}
+  #sv-kg{width:110px}
+  .verd{
+    background:var(--surface);border:1px solid var(--line);
+    border-left:2px solid var(--muted);padding:16px 18px;margin-top:22px;
+  }
+  .verd.gerai{border-left-color:var(--brass)}
+  .verd.per-letai{border-left-color:var(--clay)}
+  .verd.per-greitai{border-left-color:var(--slate)}
+  .verd-t{font-size:14px;font-weight:600;line-height:1.35}
+  .verd-d{font-size:13px;color:var(--muted);margin-top:7px;line-height:1.55}
+  .verd-d b{color:var(--text);font-weight:600}
+  .grafikas{background:var(--surface);border:1px solid var(--line);padding:14px 12px 8px}
+  .grafikas svg{display:block;width:100%;height:auto}
+  .legenda{
+    display:flex;gap:18px;font-size:11px;color:var(--muted);
+    padding:0 4px 12px;
+  }
+  .legenda span{display:flex;align-items:center;gap:6px}
+  .lg-taskas{width:7px;height:7px;border-radius:50%;background:var(--muted)}
+  .lg-linija{width:14px;height:2px;background:var(--brass)}
   /* --- navigacija --- */
   nav{
-    position:fixed;
-    bottom:0;left:0;right:0;
-    background:var(--bg);
-    border-top:1px solid var(--line);
-    display:flex;
-    padding-bottom:env(safe-area-inset-bottom);
+    position:fixed;bottom:0;left:0;right:0;
+    background:var(--bg);border-top:1px solid var(--line);
+    display:flex;padding-bottom:env(safe-area-inset-bottom);z-index:5;
   }
   nav button{
-    flex:1;
-    background:none;
-    color:var(--muted);
-    font-size:11px;
-    font-weight:600;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    padding:18px 4px;
-    border-top:2px solid transparent;
-    margin-top:-1px;
+    flex:1;background:none;color:var(--muted);
+    font-size:11px;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;padding:18px 4px;
+    border-top:2px solid transparent;margin-top:-1px;
   }
   nav button.on{color:var(--text);border-top-color:var(--brass)}
   nav button:focus-visible,.btn:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
-
   .panel{display:none}
   .panel.on{display:block}
-
-  @media (prefers-reduced-motion:reduce){
-    *{transition:none!important}
+  /* --- lapelis (sheet) --- */
+  .bg{
+    position:fixed;inset:0;background:rgba(10,13,16,.72);
+    z-index:10;display:none;
   }
+  .bg.on{display:block}
+  .sheet{
+    position:fixed;left:0;right:0;bottom:0;z-index:11;
+    background:var(--surface);border-top:1px solid var(--line);
+    padding:22px 20px calc(24px + env(safe-area-inset-bottom));
+    max-width:520px;margin:0 auto;
+    transform:translateY(100%);transition:transform .25s ease;
+    max-height:88vh;overflow-y:auto;
+  }
+  .sheet.on{transform:translateY(0)}
+  .sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .sheet-pav{font-size:17px;font-weight:600;line-height:1.3}
+  .sheet-sub{font-size:12px;color:var(--muted);margin-top:5px}
+  .close{background:none;font-size:22px;color:var(--muted);line-height:1;padding:0 2px}
+  .gram{display:flex;align-items:center;gap:10px;margin:24px 0 20px}
+  .gram input{
+    flex:1;background:transparent;border:none;border-bottom:1px solid var(--brass);
+    color:var(--brass);font-family:inherit;font-variant-numeric:tabular-nums;
+    font-size:32px;font-weight:600;text-align:center;padding:4px 0;min-width:0;
+  }
+  .gram input:focus{outline:none}
+  .gram .unit{font-size:14px;color:var(--muted)}
+  .step{
+    background:var(--bg);border:1px solid var(--line);
+    color:var(--text);font-size:14px;padding:12px 14px;white-space:nowrap;
+  }
+  .step:active{background:#232B34}
+  .porc{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+  .porc button{
+    background:var(--bg);border:1px solid var(--line);
+    color:var(--muted);font-size:12px;padding:8px 12px;
+  }
+  .porc button:active{border-color:var(--brass);color:var(--brass)}
+  .prev{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+    padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .prev div{text-align:center}
+  .prev b{display:block;font-size:19px;font-weight:600}
+  .prev span{display:block;font-size:10px;color:var(--muted);margin-top:4px}
+  /* --- naujo produkto forma --- */
+  .frow{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:12px 0;border-bottom:1px solid var(--line);gap:12px;
+  }
+  .frow label{font-size:14px;color:var(--muted);white-space:nowrap}
+  .frow input{
+    flex:1;background:transparent;border:none;border-bottom:1px solid var(--line);
+    color:var(--text);font-family:inherit;font-variant-numeric:tabular-nums;
+    font-size:15px;text-align:right;padding:4px 2px;min-width:0;
+  }
+  .frow input:focus{outline:none;border-bottom-color:var(--brass)}
+  .err{font-size:12px;color:var(--clay);margin-top:12px;min-height:14px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-
 <div class="wrap">
-
   <header>
     <span class="eyebrow">Maisto bazė</span>
     <span class="date" id="date"></span>
   </header>
-
   <!-- ŠIANDIEN -->
   <div class="panel on" id="p-siandien">
-
     <div class="hero">
       <div class="stat">
         <div class="num" id="kcal">0</div>
@@ -226,20 +256,15 @@
         <div class="meter"><i id="m-prot"></i></div>
       </div>
     </div>
-
     <div class="minor">
       <div>Angliavandeniai <b id="carb">0</b> g</div>
       <div>Riebalai <b id="fat">0</b> g</div>
     </div>
-
     <section>
       <h2>Valgiai</h2>
-      <div class="empty">
-        <p>Šiandien dar nieko neužfiksuota.</p>
-      </div>
-      <button class="btn" onclick="alert('Valgių fiksavimas — kitas žingsnis. Pirma reikia produktų.')">Pridėti valgį</button>
+      <div id="valgiai"></div>
+      <button class="btn" id="pridetiValgi">Pridėti valgį</button>
     </section>
-
     <section>
       <h2>Dienos tikslai</h2>
       <div class="goals">
@@ -250,119 +275,800 @@
       </div>
       <div class="saved" id="saved">Išsaugota</div>
     </section>
-
   </div>
-
   <!-- PRODUKTAI -->
   <div class="panel" id="p-produktai">
     <section style="margin-top:0">
-      <h2>Produktai</h2>
-      <div class="empty">
-        <p>Čia gyvens tavo produktai su tikromis vertėmis iš etikečių.<br>Tuščia, kol nesuvesi pirmo.</p>
+      <h2>Produktai <span class="hint" id="kiek"></span></h2>
+      <input class="search" id="paieska" type="search" placeholder="Ieškoti…" autocomplete="off">
+      <div class="list" id="produktai"></div>
+      <button class="btn-ghost" id="naujasProduktas">Pridėti naują produktą</button>
+    </section>
+    <section>
+      <h2>Atsarginė kopija</h2>
+      <div class="empty" style="text-align:left">
+        <p>Viskas laikoma tik šioje naršyklėje. Išvalei duomenis — viskas dingo.
+        Daryk kopiją kas sekmadienį.</p>
       </div>
+      <button class="btn-ghost" id="eksportas">Išsaugoti kopiją</button>
+      <button class="btn-ghost" id="importas">Atkurti iš kopijos</button>
+      <input type="file" id="kopijosFailas" accept=".json,application/json" hidden>
     </section>
   </div>
-
-  <!-- RECEPTAI -->
-  <div class="panel" id="p-receptai">
+  <!-- SVORIS -->
+  <div class="panel" id="p-svoris">
     <section style="margin-top:0">
-      <h2>Receptai</h2>
-      <div class="empty">
-        <p>Receptas — tai keli produktai, sudėti kartu.<br>Pirma produktai, paskui receptai.</p>
+      <h2>Rytinis svėrimas</h2>
+      <div class="goals">
+        <div class="row"><label for="sv-data">Data</label><input id="sv-data" type="date"></div>
+        <div class="row"><label for="sv-kg">Svoris, kg</label><input id="sv-kg" type="number" inputmode="decimal" step="0.1" min="30" max="200"></div>
+      </div>
+      <button class="btn" id="sv-saugoti">Išsaugoti</button>
+      <div class="saved" id="sv-zinute">Išsaugota</div>
+    </section>
+    <section>
+      <h2>Tendencija</h2>
+      <div class="hero">
+        <div class="stat">
+          <div class="num" id="sv-vid">—</div>
+          <div class="lbl">7 d. vidurkis, kg</div>
+        </div>
+        <div class="stat">
+          <div class="num" id="sv-pok">—</div>
+          <div class="lbl">kg per savaitę</div>
+        </div>
+      </div>
+      <div class="verd" id="sv-verd">
+        <div class="verd-t" id="sv-antraste">Per mažai duomenų</div>
+        <div class="verd-d" id="sv-tekstas">Sverkis kasryt.</div>
+      </div>
+      <div class="verd" id="sv-tdee" hidden>
+        <div class="verd-t" id="sv-tdee-t"></div>
+        <div class="verd-d" id="sv-tdee-d"></div>
       </div>
     </section>
+    <section>
+      <h2>Grafikas <span class="hint" id="sv-laikot"></span></h2>
+      <div id="sv-grafikas"></div>
+    </section>
+    <section>
+      <h2>Svėrimai</h2>
+      <div id="sv-sarasas"></div>
+    </section>
   </div>
-
 </div>
-
 <nav>
   <button class="on" data-p="siandien">Šiandien</button>
   <button data-p="produktai">Produktai</button>
-  <button data-p="receptai">Receptai</button>
+  <button data-p="svoris">Svoris</button>
 </nav>
-
+<!-- porcijos lapelis -->
+<div class="bg" id="bg"></div>
+<div class="sheet" id="sheet">
+  <div class="sheet-head">
+    <div>
+      <div class="sheet-pav" id="s-pav"></div>
+      <div class="sheet-sub" id="s-sub"></div>
+    </div>
+    <button class="close" id="s-close">&times;</button>
+  </div>
+  <div class="gram">
+    <button class="step" data-d="-10">&minus;10</button>
+    <input id="s-g" type="number" inputmode="numeric">
+    <span class="unit">g</span>
+    <button class="step" data-d="10">+10</button>
+  </div>
+  <div class="porc" id="s-porc"></div>
+  <div class="prev">
+    <div><b id="s-kcal">0</b><span>kcal</span></div>
+    <div><b id="s-b">0</b><span>baltymų</span></div>
+    <div><b id="s-a">0</b><span>angliav.</span></div>
+    <div><b id="s-r">0</b><span>riebalų</span></div>
+  </div>
+  <button class="btn" id="s-add">Pridėti į šiandien</button>
+  <button class="btn-ghost" id="s-del">Ištrinti produktą</button>
+</div>
+<!-- naujo produkto lapelis -->
+<div class="bg" id="bg2"></div>
+<div class="sheet" id="sheet2">
+  <div class="sheet-head">
+    <div>
+      <div class="sheet-pav">Naujas produktas</div>
+      <div class="sheet-sub">Vertės 100 g produkto</div>
+    </div>
+    <button class="close" id="n-close">&times;</button>
+  </div>
+  <div style="margin-top:18px">
+    <div class="frow"><label for="n-pav">Pavadinimas</label><input id="n-pav" type="text" style="text-align:left"></div>
+    <div class="frow"><label for="n-kcal">Kalorijos</label><input id="n-kcal" type="number" inputmode="decimal"></div>
+    <div class="frow"><label for="n-b">Baltymai, g</label><input id="n-b" type="number" inputmode="decimal"></div>
+    <div class="frow"><label for="n-a">Angliavandeniai, g</label><input id="n-a" type="number" inputmode="decimal"></div>
+    <div class="frow"><label for="n-r">Riebalai, g</label><input id="n-r" type="number" inputmode="decimal"></div>
+    <div class="frow"><label for="n-p">Įprasta porcija, g</label><input id="n-p" type="number" inputmode="numeric"></div>
+  </div>
+  <div class="err" id="n-err"></div>
+  <button class="btn" id="n-save">Išsaugoti</button>
+</div>
 <script>
-// ---- pradiniai tikslai (gali keisti ekrane) ----
-const NUMATYTA = { kcal:3100, prot:150, carb:445, fat:80 };
-
-// ---- tikslų įkėlimas iš telefono atminties ----
-function gautiTikslus(){
+/* =========================================================
+   1. DUOMENYS
+   ========================================================= */
+const NUMATYTA = { kcal:3100, prot:130, carb:445, fat:80 };
+const SEKLOS_V = 1;   // pakelk numerį, kai pridedi naujų sėklos produktų
+// kcal / b(altymai) / a(ngliavandeniai) / r(iebalai) - viskas 100 g
+// porc = įprasta porcija gramais, porcPav = jos pavadinimas
+const SEKLA = [
+  // --- nuo tavo etikečių ---
+  { id:'pienas',    pav:'Pienas Dvaro 2,5%',        kcal:54,  b:3.2,  a:4.7,  r:2.5,  porc:200, porcPav:'stiklinė' },
+  { id:'kiausinis', pav:'Kiaušiniai',                kcal:139, b:13,   a:0.6,  r:9.7,  porc:58,  porcPav:'1 vnt' },
+  { id:'kazeinasA', pav:'Kazeinas — šokoladinis',    kcal:333, b:82.4, a:3.7,  r:1.7,  porc:30,  porcPav:'1,5 kaušelio' },
+  { id:'kazeinasB', pav:'Kazeinas — braškinis',      kcal:350, b:84.1, a:3.9,  r:1.5,  porc:30,  porcPav:'1,5 kaušelio' },
+  { id:'jogurtas',  pav:'Graikiškas jogurtas 3,9%',  kcal:88,  b:9,    a:4.2,  r:3.9,  porc:150, porcPav:'dubenėlis' },
+  { id:'varske',    pav:'Grūdėtoji varškė 5%',       kcal:102, b:11,   a:3.2,  r:5,    porc:200, porcPav:'dubenėlis' },
+  { id:'suris',     pav:'Kietas sūris Rokiškio',     kcal:346, b:34,   a:0,    r:23.3, porc:30,  porcPav:'riekelės' },
+  { id:'bagelis',   pav:'Bagelis su sezamais',       kcal:354, b:11,   a:63,   r:5.8,  porc:80,  porcPav:'1 vnt' },
+  { id:'makaronai', pav:'Makaronai (sausi)',         kcal:351, b:14,   a:70,   r:1,    porc:100, porcPav:'porcija' },
+  { id:'ryziai',    pav:'Ryžiai (sausi)',            kcal:355, b:7.5,  a:77.8, r:1,    porc:125, porcPav:'1 pakelis' },
+  { id:'medus',     pav:'Medus',                     kcal:324, b:0.3,  a:81,   r:0,    porc:20,  porcPav:'šaukštas' },
+  { id:'desra',     pav:'Augalinė dešra (salami)',   kcal:293, b:26.9, a:10.2, r:16.1, porc:30,  porcPav:'riekelės' },
+  { id:'gardeng',   pav:'Garden Gourmet kepsneliai', kcal:235, b:12.3, a:17.6, r:11.7, porc:180, porcPav:'pakuotė' },
+  { id:'likechili', pav:'Like Sweet & Chili sojos',  kcal:104, b:16,   a:6.6,  r:0.3,  porc:180, porcPav:'pakuotė' },
+  // --- nepakuoti, iš duomenų bazių ---
+  { id:'vistiena',  pav:'Vištienos krūtinėlė (žalia)', kcal:120, b:22.5, a:0,    r:2.6,  porc:150, porcPav:'porcija' },
+  { id:'lasisa',    pav:'Lašiša (žalia)',            kcal:208, b:20.4, a:0,    r:13.4, porc:150, porcPav:'porcija' },
+  { id:'bananas',   pav:'Bananas',                   kcal:89,  b:1.1,  a:22.8, r:0.3,  porc:118, porcPav:'1 vnt' },
+  { id:'braskes',   pav:'Braškės',                   kcal:32,  b:0.7,  a:7.7,  r:0.3,  porc:150, porcPav:'sauja' },
+  { id:'silauoges', pav:'Šilauogės',                 kcal:57,  b:0.7,  a:14.5, r:0.3,  porc:100, porcPav:'sauja' },
+  { id:'arbuzas',   pav:'Arbūzas',                   kcal:30,  b:0.6,  a:7.6,  r:0.2,  porc:250, porcPav:'riekė' },
+  { id:'pomidorai', pav:'Pomidorai',                 kcal:18,  b:0.9,  a:3.9,  r:0.2,  porc:100, porcPav:'1 vnt' },
+  { id:'agurkai',   pav:'Agurkai',                   kcal:15,  b:0.7,  a:3.6,  r:0.1,  porc:100, porcPav:'1 vnt' },
+  { id:'spinatai',  pav:'Špinatai',                  kcal:23,  b:2.9,  a:3.6,  r:0.4,  porc:50,  porcPav:'sauja' },
+  { id:'salotos',   pav:'Salotos (lapinės)',         kcal:15,  b:1.4,  a:2.9,  r:0.2,  porc:50,  porcPav:'sauja' }
+];
+/* --- atmintis --- */
+function skaityti(raktas, atsarginis){
   try{
-    const issaugota = localStorage.getItem('tikslai');
-    return issaugota ? JSON.parse(issaugota) : { ...NUMATYTA };
-  }catch(e){
-    return { ...NUMATYTA };
-  }
+    const t = localStorage.getItem(raktas);
+    return t ? JSON.parse(t) : atsarginis;
+  }catch(e){ return atsarginis; }
 }
-
-let tikslai = gautiTikslus();
-
-// ---- šiandienos suvestinė (kol kas nieko nesuvalgyta) ----
-const suvalgyta = { kcal:0, prot:0, carb:0, fat:0 };
-
+function rasyti(raktas, reiksme){
+  try{ localStorage.setItem(raktas, JSON.stringify(reiksme)); }catch(e){}
+}
+let tikslai   = Object.assign({}, NUMATYTA, skaityti('tikslai', {}));
+let produktai = skaityti('produktai', null);
+let dienos    = skaityti('dienos', {});
+let svoriai   = skaityti('svoriai', {});      // { '2026-08-15': 60.4 }
+// pirmas paleidimas arba nauji sėklos produktai
+if(!Array.isArray(produktai)){
+  produktai = SEKLA.slice();
+  rasyti('seklosV', SEKLOS_V);
+}else if(skaityti('seklosV', 0) < SEKLOS_V){
+  const turimi = new Set(produktai.map(p => p.id));
+  SEKLA.forEach(p => { if(!turimi.has(p.id)) produktai.push(p); });
+  rasyti('seklosV', SEKLOS_V);
+}
+rasyti('produktai', produktai);
+/* =========================================================
+   2. PAGALBINĖS
+   ========================================================= */
+// vietinė data, ne UTC - kitaip po vidurnakčio šoktų diena
+function siandienRaktas(){
+  const d = new Date();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return d.getFullYear() + '-' + m + '-' + dd;
+}
+const $ = id => document.getElementById(id);
+const sveikas  = n => Math.round(n);
+const desimtis = n => Math.round(n * 10) / 10;
+function siandienosValgiai(){
+  const r = siandienRaktas();
+  if(!dienos[r]) dienos[r] = [];
+  return dienos[r];
+}
+function suma(){
+  return siandienosValgiai().reduce((s, v) => ({
+    kcal: s.kcal + v.kcal,
+    b: s.b + v.b,
+    a: s.a + v.a,
+    r: s.r + v.r
+  }), { kcal:0, b:0, a:0, r:0 });
+}
+/* =========================================================
+   3. PIEŠIMAS
+   ========================================================= */
 function perpiesti(){
-  const likoKcal = tikslai.kcal - suvalgyta.kcal;
-  const likoProt = tikslai.prot - suvalgyta.prot;
-
-  const eKcal = document.getElementById('kcal');
-  const eProt = document.getElementById('prot');
-  eKcal.textContent = likoKcal;
-  eProt.textContent = likoProt;
-  eKcal.classList.toggle('over', likoKcal < 0);
-  eProt.classList.toggle('over', likoProt < 0);
-
-  document.getElementById('carb').textContent = tikslai.carb - suvalgyta.carb;
-  document.getElementById('fat').textContent  = tikslai.fat  - suvalgyta.fat;
-
-  const dalis = (a,b) => Math.min(100, b > 0 ? (a/b)*100 : 0) + '%';
-  document.getElementById('m-kcal').style.width = dalis(suvalgyta.kcal, tikslai.kcal);
-  document.getElementById('m-prot').style.width = dalis(suvalgyta.prot, tikslai.prot);
+  const s = suma();
+  const likoKcal = sveikas(tikslai.kcal - s.kcal);
+  const likoProt = sveikas(tikslai.prot - s.b);
+  $('kcal').textContent = likoKcal;
+  $('prot').textContent = likoProt;
+  $('kcal').classList.toggle('over', likoKcal < 0);
+  $('prot').classList.toggle('over', likoProt < 0);
+  $('carb').textContent = sveikas(tikslai.carb - s.a);
+  $('fat').textContent  = sveikas(tikslai.fat  - s.r);
+  const dalis = (a, b) => Math.min(100, b > 0 ? (a / b) * 100 : 0) + '%';
+  $('m-kcal').style.width = dalis(s.kcal, tikslai.kcal);
+  $('m-prot').style.width = dalis(s.b, tikslai.prot);
+  piestiValgius();
 }
-
-// laukus užpildom tik atidarant — kitaip trintų skaičių berašant
-function uzpildytiLaukus(){
-  document.getElementById('t-kcal').value = tikslai.kcal;
-  document.getElementById('t-prot').value = tikslai.prot;
-  document.getElementById('t-carb').value = tikslai.carb;
-  document.getElementById('t-fat').value  = tikslai.fat;
+function piestiValgius(){
+  const valgiai = siandienosValgiai();
+  const vieta = $('valgiai');
+  if(valgiai.length === 0){
+    vieta.innerHTML = '<div class="empty"><p>Šiandien dar nieko neužfiksuota.</p></div>';
+    return;
+  }
+  vieta.innerHTML = '<div class="list">' + valgiai.map((v, i) => `
+    <div class="item">
+      <div class="txt">
+        <div class="pav">${saugu(v.pav)}</div>
+        <div class="sub">${v.g} g</div>
+      </div>
+      <div class="val">
+        <b>${sveikas(v.kcal)}</b> kcal
+        <span>${desimtis(v.b)} g baltymų</span>
+      </div>
+      <button class="x" data-trinti="${i}" aria-label="Pašalinti">&times;</button>
+    </div>`).join('') + '</div>';
+  vieta.querySelectorAll('[data-trinti]').forEach(b => {
+    b.addEventListener('click', () => {
+      siandienosValgiai().splice(Number(b.dataset.trinti), 1);
+      rasyti('dienos', dienos);
+      perpiesti();
+      perpiestiSvori();          // TDEE priklauso nuo suvartojimo
+    });
+  });
 }
-
-// ---- tikslų keitimas ir išsaugojimas ----
+function saugu(t){
+  return String(t).replace(/[&<>"]/g, z => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[z]));
+}
+// paieska be diakritiku: telefone rasyti "ryziai" greiciau nei "ryžiai"
+function bediakritiku(t){
+  return String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+function piestiProduktus(){
+  const q = bediakritiku($('paieska').value.trim());
+  const rasti = produktai
+    .filter(p => bediakritiku(p.pav).includes(q))
+    .sort((x, y) => x.pav.localeCompare(y.pav, 'lt'));
+  $('kiek').textContent = produktai.length + ' vnt';
+  if(rasti.length === 0){
+    $('produktai').innerHTML =
+      '<div class="empty"><p>Nieko nerasta. Pridėk naują žemiau.</p></div>';
+    return;
+  }
+  $('produktai').innerHTML = rasti.map(p => `
+    <button class="prod" data-id="${p.id}">
+      <div class="txt">
+        <div class="pav">${saugu(p.pav)}</div>
+        <div class="sub">${p.porc} g &middot; ${saugu(p.porcPav)}</div>
+      </div>
+      <div class="val">
+        <b>${p.kcal}</b> kcal
+        <div>${p.b} g B</div>
+      </div>
+    </button>`).join('');
+  $('produktai').querySelectorAll('.prod').forEach(b => {
+    b.addEventListener('click', () => atidarytiLapeli(b.dataset.id));
+  });
+}
+/* =========================================================
+   4. PORCIJOS LAPELIS
+   ========================================================= */
+let pasirinktas = null;
+function atidarytiLapeli(id){
+  pasirinktas = produktai.find(p => p.id === id);
+  if(!pasirinktas) return;
+  $('s-pav').textContent = pasirinktas.pav;
+  $('s-sub').textContent =
+    `100 g: ${pasirinktas.kcal} kcal · ${pasirinktas.b} g baltymų`;
+  $('s-g').value = pasirinktas.porc;
+  const variantai = [pasirinktas.porc, 50, 100, 150, 200]
+    .filter((v, i, arr) => arr.indexOf(v) === i);
+  $('s-porc').innerHTML = variantai.map((g, i) =>
+    `<button data-g="${g}">${g} g${i === 0 ? ' · ' + saugu(pasirinktas.porcPav) : ''}</button>`
+  ).join('');
+  $('s-porc').querySelectorAll('button').forEach(b => {
+    b.addEventListener('click', () => { $('s-g').value = b.dataset.g; skaiciuoti(); });
+  });
+  skaiciuoti();
+  $('bg').classList.add('on');
+  $('sheet').classList.add('on');
+}
+function uzdarytiLapeli(){
+  $('bg').classList.remove('on');
+  $('sheet').classList.remove('on');
+  pasirinktas = null;
+}
+function skaiciuoti(){
+  if(!pasirinktas) return { kcal:0, b:0, a:0, r:0, g:0 };
+  const g = Math.max(0, parseFloat($('s-g').value) || 0);
+  const k = g / 100;
+  const rez = {
+    g,
+    kcal: pasirinktas.kcal * k,
+    b: pasirinktas.b * k,
+    a: pasirinktas.a * k,
+    r: pasirinktas.r * k
+  };
+  $('s-kcal').textContent = sveikas(rez.kcal);
+  $('s-b').textContent    = desimtis(rez.b);
+  $('s-a').textContent    = desimtis(rez.a);
+  $('s-r').textContent    = desimtis(rez.r);
+  return rez;
+}
+$('s-g').addEventListener('input', skaiciuoti);
+$('s-close').addEventListener('click', uzdarytiLapeli);
+$('bg').addEventListener('click', uzdarytiLapeli);
+document.querySelectorAll('.step').forEach(b => {
+  b.addEventListener('click', () => {
+    const dabar = parseFloat($('s-g').value) || 0;
+    $('s-g').value = Math.max(0, dabar + Number(b.dataset.d));
+    skaiciuoti();
+  });
+});
+$('s-add').addEventListener('click', () => {
+  const rez = skaiciuoti();
+  if(!pasirinktas || rez.g <= 0) return;
+  siandienosValgiai().push({
+    pav: pasirinktas.pav,
+    g: sveikas(rez.g),
+    kcal: rez.kcal,
+    b: rez.b,
+    a: rez.a,
+    r: rez.r
+  });
+  rasyti('dienos', dienos);
+  uzdarytiLapeli();
+  rodytiPanele('siandien');
+  perpiesti();
+  perpiestiSvori();
+});
+$('s-del').addEventListener('click', () => {
+  if(!pasirinktas) return;
+  if(!confirm('Ištrinti „' + pasirinktas.pav + '" iš produktų?')) return;
+  produktai = produktai.filter(p => p.id !== pasirinktas.id);
+  rasyti('produktai', produktai);
+  uzdarytiLapeli();
+  piestiProduktus();
+});
+/* =========================================================
+   5. NAUJAS PRODUKTAS
+   ========================================================= */
+function uzdarytiForma(){
+  $('bg2').classList.remove('on');
+  $('sheet2').classList.remove('on');
+}
+$('naujasProduktas').addEventListener('click', () => {
+  ['n-pav','n-kcal','n-b','n-a','n-r','n-p'].forEach(id => $(id).value = '');
+  $('n-err').textContent = '';
+  $('bg2').classList.add('on');
+  $('sheet2').classList.add('on');
+});
+$('n-close').addEventListener('click', uzdarytiForma);
+$('bg2').addEventListener('click', uzdarytiForma);
+$('n-save').addEventListener('click', () => {
+  const pav = $('n-pav').value.trim();
+  const kcal = parseFloat($('n-kcal').value);
+  const b = parseFloat($('n-b').value);
+  const a = parseFloat($('n-a').value);
+  const r = parseFloat($('n-r').value);
+  const porc = parseFloat($('n-p').value);
+  if(!pav){ $('n-err').textContent = 'Įrašyk pavadinimą.'; return; }
+  if([kcal,b,a,r].some(v => isNaN(v))){
+    $('n-err').textContent = 'Užpildyk kalorijas ir visus tris makro.';
+    return;
+  }
+  produktai.push({
+    id: 'p' + Date.now(),
+    pav, kcal, b, a, r,
+    porc: isNaN(porc) || porc <= 0 ? 100 : porc,
+    porcPav: 'porcija'
+  });
+  rasyti('produktai', produktai);
+  uzdarytiForma();
+  piestiProduktus();
+});
+/* =========================================================
+   6. TIKSLAI, NAVIGACIJA
+   ========================================================= */
 const laukai = { kcal:'t-kcal', prot:'t-prot', carb:'t-carb', fat:'t-fat' };
 let laikmatis;
-
+function uzpildytiLaukus(){
+  Object.entries(laukai).forEach(([raktas, id]) => $(id).value = tikslai[raktas]);
+}
 Object.entries(laukai).forEach(([raktas, id]) => {
-  document.getElementById(id).addEventListener('input', e => {
-    const reiksme = parseInt(e.target.value, 10);
-    tikslai[raktas] = isNaN(reiksme) ? 0 : reiksme;
-    localStorage.setItem('tikslai', JSON.stringify(tikslai));
-
-    const zenklas = document.getElementById('saved');
-    zenklas.classList.add('show');
-    clearTimeout(laikmatis);
-    laikmatis = setTimeout(() => zenklas.classList.remove('show'), 1400);
-
+  $(id).addEventListener('input', e => {
+    const v = parseInt(e.target.value, 10);
+    tikslai[raktas] = isNaN(v) ? 0 : v;
+    rasyti('tikslai', tikslai);
+    parodytiZinute('saved');
     perpiesti();
+    perpiestiSvori();
   });
 });
-
-// ---- navigacija tarp ekranų ----
-document.querySelectorAll('nav button').forEach(mygtukas => {
-  mygtukas.addEventListener('click', () => {
-    document.querySelectorAll('nav button').forEach(b => b.classList.remove('on'));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
-    mygtukas.classList.add('on');
-    document.getElementById('p-' + mygtukas.dataset.p).classList.add('on');
-  });
+function parodytiZinute(id){
+  const z = $(id);
+  z.classList.add('show');
+  clearTimeout(laikmatis);
+  laikmatis = setTimeout(() => z.classList.remove('show'), 1400);
+}
+function rodytiPanele(vardas){
+  document.querySelectorAll('nav button').forEach(b =>
+    b.classList.toggle('on', b.dataset.p === vardas));
+  document.querySelectorAll('.panel').forEach(p =>
+    p.classList.toggle('on', p.id === 'p-' + vardas));
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll('nav button').forEach(b => {
+  b.addEventListener('click', () => rodytiPanele(b.dataset.p));
 });
-
-// ---- data ----
-document.getElementById('date').textContent =
+$('pridetiValgi').addEventListener('click', () => {
+  rodytiPanele('produktai');
+  $('paieska').focus();
+});
+$('paieska').addEventListener('input', piestiProduktus);
+/* =========================================================
+   7. ATSARGINĖ KOPIJA
+   ========================================================= */
+const KOPIJOS_V = 1;
+function eksportuoti(){
+  const paketas = {
+    v: KOPIJOS_V,
+    data: siandienRaktas(),
+    tikslai, produktai, dienos, svoriai,
+    seklosV: skaityti('seklosV', 0)
+  };
+  const failas = new Blob([JSON.stringify(paketas, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(failas);
+  a.download = 'maisto-baze-' + siandienRaktas() + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+function importuoti(failas){
+  const skaitytuvas = new FileReader();
+  skaitytuvas.onload = () => {
+    let d;
+    try { d = JSON.parse(skaitytuvas.result); }
+    catch(e){ alert('Failas sugadintas arba ne tas.'); return; }
+    if(!d || !Array.isArray(d.produktai)){ alert('Tai nepanašu į atsarginę kopiją.'); return; }
+    if(!confirm('Pakeisti visus dabartinius duomenis kopijos duomenimis?')) return;
+    tikslai   = Object.assign({}, NUMATYTA, d.tikslai || {});
+    produktai = d.produktai;
+    dienos    = d.dienos  || {};
+    svoriai   = d.svoriai || {};
+    rasyti('tikslai', tikslai);
+    rasyti('produktai', produktai);
+    rasyti('dienos', dienos);
+    rasyti('svoriai', svoriai);
+    rasyti('seklosV', d.seklosV || 0);
+    uzpildytiLaukus();
+    piestiProduktus();
+    perpiesti();
+    perpiestiSvori();
+    alert('Atkurta.');
+  };
+  skaitytuvas.readAsText(failas);
+}
+$('eksportas').addEventListener('click', eksportuoti);
+$('importas').addEventListener('click', () => $('kopijosFailas').click());
+$('kopijosFailas').addEventListener('change', e => {
+  if(e.target.files[0]) importuoti(e.target.files[0]);
+  e.target.value = '';          // kad tą patį failą galėtum įkelti dar kartą
+});
+/* =========================================================
+   8. SVORIS — DUOMENYS IR DATOS
+   ========================================================= */
+function irasytiSvori(raktas, kg){
+  const sk = parseFloat(kg);
+  if(isNaN(sk) || sk < 30 || sk > 200) return false;
+  svoriai[raktas] = Math.round(sk * 10) / 10;
+  rasyti('svoriai', svoriai);
+  return true;
+}
+function trintiSvori(raktas){
+  delete svoriai[raktas];
+  rasyti('svoriai', svoriai);
+}
+function raktasIsDatos(d){
+  return d.getFullYear() + '-' +
+    String(d.getMonth()+1).padStart(2,'0') + '-' +
+    String(d.getDate()).padStart(2,'0');
+}
+function datalsRakto(raktas){
+  const [m,men,d] = raktas.split('-').map(Number);
+  return new Date(m, men-1, d);
+}
+function pridetiDienas(d, n){
+  const x = new Date(d);
+  x.setDate(x.getDate() + n);
+  return x;
+}
+function raktasTrumpai(raktas){
+  const d = datalsRakto(raktas);
+  return d.getDate() + '/' + (d.getMonth()+1);
+}
+/* =========================================================
+   9. SVORIS — MATEMATIKA
+   ========================================================= */
+// Slenkantis vidurkis per `kiekDienu` dienų, kurios baigiasi `pabaiga` (imtinai).
+function langoVidurkis(pabaiga, kiekDienu){
+  const gal = datalsRakto(pabaiga);
+  const pra = pridetiDienas(gal, -(kiekDienu - 1));
+  const r = Object.keys(svoriai)
+    .filter(k => { const d = datalsRakto(k); return d >= pra && d <= gal; })
+    .map(k => svoriai[k]);
+  if(r.length === 0) return null;
+  return r.reduce((a,b) => a+b, 0) / r.length;
+}
+function langoKiekis(pabaiga, kiekDienu){
+  const gal = datalsRakto(pabaiga);
+  const pra = pridetiDienas(gal, -(kiekDienu - 1));
+  return Object.keys(svoriai)
+    .filter(k => { const d = datalsRakto(k); return d >= pra && d <= gal; }).length;
+}
+// Pokytis kg per savaitę: šios savaitės vidurkis minus praeitos.
+// null, jei bent viename lange mažiau nei 3 svėrimai — kitaip triukšmas
+// apsimeta tendencija.
+function savaitesPokytis(){
+  const siandien = siandienRaktas();
+  const praeitosGalas = raktasIsDatos(pridetiDienas(datalsRakto(siandien), -7));
+  const dabar = langoVidurkis(siandien, 7);
+  const anksciau = langoVidurkis(praeitosGalas, 7);
+  if(dabar === null || anksciau === null) return null;
+  if(langoKiekis(siandien, 7) < 3 || langoKiekis(praeitosGalas, 7) < 3) return null;
+  return dabar - anksciau;
+}
+function verdiktas(){
+  const p = savaitesPokytis();
+  const siandien = siandienRaktas();
+  if(p === null){
+    const praeitosGalas = raktasIsDatos(pridetiDienas(datalsRakto(siandien), -7));
+    const truksta = Math.max(0, 3 - langoKiekis(siandien, 7)) +
+                    Math.max(0, 3 - langoKiekis(praeitosGalas, 7));
+    return {
+      bukle: 'nezinia', pokytis: null,
+      antraste: 'Per mažai duomenų',
+      tekstas: truksta > 0
+        ? 'Trūksta maždaug ' + truksta + ' svėrimų per paskutines dvi savaites. Sverkis kasryt, prieš pusryčius.'
+        : 'Sverkis kasryt — dar dvi pilnos savaitės ir galėsiu pasakyti.'
+    };
+  }
+  let bukle, antraste, tekstas;
+  if(p < 0.15){
+    bukle = 'per-letai';
+    antraste = 'Augi per lėtai — valgyk daugiau';
+    tekstas = 'Per savaitę ' + (p>=0?'+':'') + p.toFixed(2) + ' kg. Tikslas 0,15–0,40. ' +
+              'Pridėk ~200 kcal per dieną ir duok dvi savaites.';
+  } else if(p > 0.40){
+    bukle = 'per-greitai';
+    antraste = 'Augi per greitai — pristabdyk';
+    tekstas = 'Per savaitę +' + p.toFixed(2) + ' kg. Virš 0,40 priedas daugiausia riebalai. ' +
+              'Nuimk ~200 kcal per dieną.';
+  } else {
+    bukle = 'gerai';
+    antraste = 'Viskas kaip reikia — nieko nekeisk';
+    tekstas = 'Per savaitę +' + p.toFixed(2) + ' kg, tiksliai 0,15–0,40 ruože. ' +
+              'Valgyk lygiai taip pat.';
+  }
+  const maziausiai = Math.min(langoKiekis(siandien, 7),
+    langoKiekis(raktasIsDatos(pridetiDienas(datalsRakto(siandien), -7)), 7));
+  if(maziausiai < 5){
+    tekstas += ' Preliminaru — vienoje iš savaičių tik ' + maziausiai +
+               ' svėrimai. Kol kas vien dėl to nieko nekeisk.';
+  }
+  return { bukle, pokytis: p, antraste, tekstas };
+}
+function dienosKalorijos(raktas){
+  const v = dienos[raktas] || [];
+  return v.reduce((s,x) => s + x.kcal, 0);
+}
+// TIKRAS palaikymas: vidutinis suvartojimas − energija, nuėjusi į kūno masę.
+// 1 kg kūno masės ≈ 7700 kcal. Šiandiena neįskaičiuojama — diena dar nebaigta.
+function tikrasTDEE(){
+  const p = savaitesPokytis();
+  if(p === null) return null;
+  const siandien = datalsRakto(siandienRaktas());
+  const suvartojimai = [];
+  for(let i = 1; i <= 13; i++){
+    const r = raktasIsDatos(pridetiDienas(siandien, -i));
+    if(dienos[r] && dienos[r].length) suvartojimai.push(dienosKalorijos(r));
+  }
+  if(suvartojimai.length < 10) return null;
+  const vidutinis = suvartojimai.reduce((a,b) => a+b, 0) / suvartojimai.length;
+  const tdee = Math.round((vidutinis - (p * 7700 / 7)) / 10) * 10;
+  const siulomas = Math.round((tdee + 250) / 10) * 10;
+  return {
+    tdee, siulomas,
+    suvartojimas: Math.round(vidutinis),
+    dienos: suvartojimai.length,
+    skirtumas: siulomas - tikslai.kcal
+  };
+}
+// Grafiko taškai, x ir y normalizuoti 0..1 (y: 0 = viršus, kaip SVG).
+function grafikoTaskai(maxDienu){
+  maxDienu = maxDienu || 30;
+  const raktai = Object.keys(svoriai).sort();
+  if(raktai.length < 2) return null;
+  const siandien = datalsRakto(siandienRaktas());
+  const anksciausia = datalsRakto(raktai[0]);
+  const riba = pridetiDienas(siandien, -(maxDienu - 1));
+  const pradzia = anksciausia > riba ? anksciausia : riba;
+  const ilgis = Math.round((siandien - pradzia) / 86400000);
+  if(ilgis < 1) return null;
+  const eile = [];
+  for(let i = 0; i <= ilgis; i++) eile.push(raktasIsDatos(pridetiDienas(pradzia, i)));
+  const tikri = [], vidurkiai = [];
+  eile.forEach((r, i) => {
+    if(svoriai[r] !== undefined) tikri.push({ i, raktas: r, kg: svoriai[r] });
+    const v = langoVidurkis(r, 7);
+    if(v !== null) vidurkiai.push({ i, raktas: r, kg: v });
+  });
+  if(tikri.length < 2) return null;
+  const visos = tikri.map(t => t.kg).concat(vidurkiai.map(t => t.kg));
+  let min = Math.min(...visos), max = Math.max(...visos);
+  const tarpas = Math.max(0.5, (max - min) * 0.25);
+  min -= tarpas; max += tarpas;
+  const x = i => i / ilgis;
+  const y = kg => 1 - (kg - min) / (max - min);
+  return {
+    tikri:     tikri.map(t => ({ x:x(t.i), y:y(t.kg), kg:t.kg, raktas:t.raktas })),
+    vidurkiai: vidurkiai.map(t => ({ x:x(t.i), y:y(t.kg), kg:t.kg, raktas:t.raktas })),
+    minKg: min, maxKg: max,
+    nuo: eile[0], iki: eile[eile.length - 1],
+    dienuSkaicius: eile.length
+  };
+}
+/* =========================================================
+   10. SVORIS — PIEŠIMAS
+   ========================================================= */
+let svData = siandienRaktas();
+function paruostiSvorioLaukus(){
+  const laukas = $('sv-data');
+  laukas.max = siandienRaktas();
+  laukas.value = svData;
+  const turimas = svoriai[svData];
+  $('sv-kg').value = turimas !== undefined ? turimas : '';
+}
+function perpiestiSvori(){
+  const vid = langoVidurkis(siandienRaktas(), 7);
+  $('sv-vid').textContent = vid === null ? '—' : vid.toFixed(1);
+  const v = verdiktas();
+  $('sv-pok').textContent = v.pokytis === null
+    ? '—' : (v.pokytis >= 0 ? '+' : '') + v.pokytis.toFixed(2);
+  $('sv-pok').classList.toggle('over', v.bukle === 'per-greitai' || v.bukle === 'per-letai');
+  $('sv-verd').className = 'verd ' + v.bukle;
+  $('sv-antraste').textContent = v.antraste;
+  $('sv-tekstas').textContent = v.tekstas;
+  const t = tikrasTDEE();
+  if(t === null){
+    $('sv-tdee').hidden = true;
+  } else {
+    $('sv-tdee').hidden = false;
+    $('sv-tdee-t').textContent = 'Tikras palaikymas: ~' + t.tdee + ' kcal';
+    $('sv-tdee-d').innerHTML =
+      'Išmatuota iš <b>' + t.dienos + '</b> dienų suvartojimo (vidurkis <b>' +
+      t.suvartojimas + '</b> kcal) prieš tikrą svorio pokytį — ne iš formulės. ' +
+      (Math.abs(t.skirtumas) < 100
+        ? 'Tavo <b>' + tikslai.kcal + '</b> kcal tikslas maždaug teisingas.'
+        : 'Švariam masės auginimui tiktų <b>~' + t.siulomas + '</b> kcal, tai yra ' +
+          (t.skirtumas > 0 ? '+' : '') + t.skirtumas + ' nuo dabartinio tikslo.');
+  }
+  piestiGrafika();
+  piestiSvoriuSarasa();
+}
+function piestiGrafika(){
+  const vieta = $('sv-grafikas');
+  const t = grafikoTaskai(30);
+  if(!t){
+    $('sv-laikot').textContent = '';
+    vieta.innerHTML = '<div class="empty"><p>Pasverk bent dvi dienas —<br>tada čia atsiras kreivė.</p></div>';
+    return;
+  }
+  $('sv-laikot').textContent = t.dienuSkaicius + ' d.';
+  const W = 320, H = 150, PK = 34, PD = 10, PV = 12, PA = 22;
+  const px = p => (PK + p.x * (W - PK - PD)).toFixed(1);
+  const py = p => (PV + p.y * (H - PV - PA)).toFixed(1);
+  let s = '';
+  // tinklelis + kg žymos
+  for(let i = 0; i <= 2; i++){
+    const kg = t.maxKg - (t.maxKg - t.minKg) * i / 2;
+    const yy = (PV + (i/2) * (H - PV - PA)).toFixed(1);
+    s += `<line x1="${PK}" x2="${W-PD}" y1="${yy}" y2="${yy}" stroke="#2A323C" stroke-width="1"/>`;
+    s += `<text x="${PK-6}" y="${(+yy+3.5).toFixed(1)}" text-anchor="end" font-size="9" fill="#89919E">${kg.toFixed(1)}</text>`;
+  }
+  // datos
+  s += `<text x="${PK}" y="${H-6}" text-anchor="start" font-size="9" fill="#89919E">${raktasTrumpai(t.nuo)}</text>`;
+  s += `<text x="${W-PD}" y="${H-6}" text-anchor="end" font-size="9" fill="#89919E">${raktasTrumpai(t.iki)}</text>`;
+  // kasdieniai svėrimai — triukšmas, todėl blankūs
+  t.tikri.forEach(p => {
+    s += `<circle cx="${px(p)}" cy="${py(p)}" r="2.6" fill="#89919E"/>`;
+  });
+  // 7 dienų vidurkis — signalas, todėl žalvarinis
+  if(t.vidurkiai.length > 1){
+    const d = t.vidurkiai.map((p,i) => (i ? 'L' : 'M') + px(p) + ' ' + py(p)).join(' ');
+    s += `<path d="${d}" fill="none" stroke="#C9A66B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+    const pas = t.vidurkiai[t.vidurkiai.length-1];
+    s += `<circle cx="${px(pas)}" cy="${py(pas)}" r="3.5" fill="#C9A66B"/>`;
+  }
+  vieta.innerHTML =
+    '<div class="legenda">' +
+      '<span><i class="lg-taskas"></i>Kasdien</span>' +
+      '<span><i class="lg-linija"></i>7 d. vidurkis</span>' +
+    '</div>' +
+    '<div class="grafikas"><svg viewBox="0 0 ' + W + ' ' + H +
+    '" role="img" aria-label="Svorio kreivė"></svg></div>';
+  vieta.querySelector('svg').innerHTML = s;
+}
+function piestiSvoriuSarasa(){
+  const raktai = Object.keys(svoriai).sort().reverse();
+  const vieta = $('sv-sarasas');
+  if(raktai.length === 0){
+    vieta.innerHTML = '<div class="empty"><p>Dar nieko nepasverta.</p></div>';
+    return;
+  }
+  vieta.innerHTML = '<div class="list">' + raktai.map(r => {
+    const vid = langoVidurkis(r, 7);
+    return `
+    <div class="item">
+      <div class="txt">
+        <div class="pav">${raktasTrumpai(r)}</div>
+        <div class="sub">${vid !== null ? 'vidurkis ' + vid.toFixed(1) + ' kg' : ''}</div>
+      </div>
+      <div class="val"><b>${svoriai[r].toFixed(1)}</b> kg</div>
+      <button class="x" data-sv="${r}" aria-label="Pašalinti">&times;</button>
+    </div>`;
+  }).join('') + '</div>';
+  vieta.querySelectorAll('[data-sv]').forEach(b => {
+    b.addEventListener('click', () => {
+      trintiSvori(b.dataset.sv);
+      paruostiSvorioLaukus();
+      perpiestiSvori();
+    });
+  });
+}
+$('sv-data').addEventListener('change', e => {
+  const v = e.target.value;
+  svData = (v && v <= siandienRaktas()) ? v : siandienRaktas();
+  paruostiSvorioLaukus();
+});
+$('sv-saugoti').addEventListener('click', () => {
+  if(!irasytiSvori(svData, $('sv-kg').value)){
+    $('sv-kg').focus();
+    return;
+  }
+  // pildai praeitį? šoktelėk į kitą dieną, kad 10 įrašų būtų 10 paspaudimų
+  if(svData !== siandienRaktas()){
+    const kita = raktasIsDatos(pridetiDienas(datalsRakto(svData), 1));
+    svData = kita <= siandienRaktas() ? kita : siandienRaktas();
+  }
+  paruostiSvorioLaukus();
+  parodytiZinute('sv-zinute');
+  perpiestiSvori();
+  if(svData !== siandienRaktas()) $('sv-kg').focus();
+});
+$('sv-kg').addEventListener('keydown', e => {
+  if(e.key === 'Enter') $('sv-saugoti').click();
+});
+/* =========================================================
+   11. PALEIDIMAS
+   ========================================================= */
+// service worker — be jo programėlė neįsirašo į telefoną ir neveikia be interneto
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+$('date').textContent =
   new Date().toLocaleDateString('lt-LT', { month:'long', day:'numeric' });
-
 uzpildytiLaukus();
+piestiProduktus();
 perpiesti();
+paruostiSvorioLaukus();
+perpiestiSvori();
 </script>
-
 </body>
 </html>
