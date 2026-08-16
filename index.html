@@ -159,6 +159,18 @@
   .legenda span{display:flex;align-items:center;gap:6px}
   .lg-taskas{width:7px;height:7px;border-radius:50%;background:var(--muted)}
   .lg-linija{width:14px;height:2px;background:var(--brass)}
+  /* --- PRIDĖTINIS CUKRUS --- */
+  .cukJuosta{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .cukVirs{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;margin-bottom:6px}
+  .cukVirs span:first-child{color:var(--muted)}
+  .cukVal b{font-weight:600;font-size:15px}
+  .cukVal span{color:var(--muted);font-size:12px}
+  .cukTrack{height:2px;background:var(--line);overflow:hidden}
+  .cukTrack i{display:block;height:100%;width:0;background:var(--slate);transition:width .4s ease}
+  .cukJuosta.virsyta .cukTrack i{background:var(--clay)}
+  .cukJuosta.virsyta .cukVal b{color:var(--clay)}
+  .cukSub{font-size:12px;color:var(--muted);margin-top:7px;line-height:1.5}
+  .cukSub.virsyta{color:var(--clay)}
   /* --- AUTOMATINIAI TIKSLAI --- */
   .rezimas{
     display:flex;background:var(--bg);border:1px solid var(--line);margin-bottom:12px;
@@ -307,6 +319,8 @@
     padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   }
   .prev div{text-align:center}
+  .s-cuk{font-size:12px;color:var(--muted);padding:10px 0 0;text-align:center}
+  .s-cuk.yra{color:var(--clay)}
   .prev b{display:block;font-size:19px;font-weight:600}
   .prev span{display:block;font-size:10px;color:var(--muted);margin-top:4px}
   /* --- naujo produkto forma --- */
@@ -350,6 +364,14 @@
       <div>Angliavandeniai <b id="carb">0</b> g</div>
       <div>Riebalai <b id="fat">0</b> g</div>
     </div>
+    <div class="cukJuosta" id="cukJuosta">
+      <div class="cukVirs">
+        <span>Pridėtinis cukrus</span>
+        <span class="cukVal"><b id="cukVal">0</b> <span id="cukTiksl">/ 50 g</span></span>
+      </div>
+      <div class="cukTrack"><i id="cukFill"></i></div>
+      <div class="cukSub" id="cukSub"></div>
+    </div>
     <section>
       <h2>Valgiai</h2>
       <div id="valgiai"></div>
@@ -375,6 +397,7 @@
         <div class="row"><label for="t-prot">Baltymai, g</label><input id="t-prot" type="number" inputmode="numeric"></div>
         <div class="row"><label for="t-carb">Angliavandeniai, g</label><input id="t-carb" type="number" inputmode="numeric"></div>
         <div class="row"><label for="t-fat">Riebalai, g</label><input id="t-fat" type="number" inputmode="numeric"></div>
+        <div class="row"><label for="t-laisvas">Pridėtinis cukrus, g</label><input id="t-laisvas" type="number" inputmode="numeric"></div>
       </div>
       <div class="saved" id="saved">Išsaugota</div>
       <div id="auto-info"></div>
@@ -387,6 +410,7 @@
       <input class="search" id="paieska" type="search" placeholder="Ieškoti…" autocomplete="off">
       <div class="list" id="produktai"></div>
       <button class="btn-ghost" id="naujasProduktas">Pridėti naują produktą</button>
+      <button class="btn-ghost" id="iklijuotiProduktus">Įklijuoti produktų sąrašą</button>
     </section>
     <section>
       <h2>Atsarginė kopija</h2>
@@ -486,6 +510,7 @@
     <div><b id="s-a">0</b><span>angliav.</span></div>
     <div><b id="s-r">0</b><span>riebalų</span></div>
   </div>
+  <div class="s-cuk" id="s-cuk"></div>
   <button class="btn" id="s-add">Pridėti į šiandien</button>
   <button class="btn-ghost" id="s-del">Ištrinti produktą</button>
 </div>
@@ -505,10 +530,38 @@
     <div class="frow"><label for="n-b">Baltymai, g</label><input id="n-b" type="number" inputmode="decimal"></div>
     <div class="frow"><label for="n-a">Angliavandeniai, g</label><input id="n-a" type="number" inputmode="decimal"></div>
     <div class="frow"><label for="n-r">Riebalai, g</label><input id="n-r" type="number" inputmode="decimal"></div>
+    <div class="frow"><label for="n-c">Cukrus, g</label><input id="n-c" type="number" inputmode="decimal" placeholder="nebūtina"></div>
+    <div class="frow" style="border-bottom:none">
+      <label for="n-l">Ar cukrus pridėtinis?</label>
+      <select id="n-l" style="background:transparent;border:none;border-bottom:1px solid var(--line);
+        color:var(--text);font-family:inherit;font-size:15px;padding:4px 2px;text-align:right">
+        <option value="0">Ne — vaisių ar pieno</option>
+        <option value="1">Taip — saldinta</option>
+      </select>
+    </div>
     <div class="frow"><label for="n-p">Įprasta porcija, g</label><input id="n-p" type="number" inputmode="numeric"></div>
   </div>
   <div class="err" id="n-err"></div>
   <button class="btn" id="n-save">Išsaugoti</button>
+</div>
+<!-- produktų sąrašo įklijavimo lapelis -->
+<div class="bg" id="bg5"></div>
+<div class="sheet" id="sheet5">
+  <div class="sheet-head">
+    <div>
+      <div class="sheet-pav">Įklijuoti produktų sąrašą</div>
+      <div class="sheet-sub">Iš sąrašo puslapio nukopijuotas tekstas</div>
+    </div>
+    <button class="close" id="ip-close">&times;</button>
+  </div>
+  <textarea id="ip-tekstas" placeholder="Įklijuok čia…" spellcheck="false"
+    style="width:100%;height:120px;background:var(--bg);border:1px solid var(--line);
+           color:var(--text);font-family:ui-monospace,monospace;font-size:11px;
+           padding:10px;margin-top:18px;resize:vertical"></textarea>
+  <div class="err" id="ip-err"></div>
+  <button class="btn" id="ip-save">Pridėti produktus</button>
+  <p class="hint" style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5">
+    Esami produktai nebus ištrinti. Tie, kuriuos jau turi, bus praleisti.</p>
 </div>
 <!-- rankinio įrašo lapelis -->
 <div class="bg" id="bg4"></div>
@@ -531,6 +584,8 @@
       <input id="rk-a" type="number" inputmode="decimal"></div>
     <div class="frow"><label for="rk-r">Riebalai, g</label>
       <input id="rk-r" type="number" inputmode="decimal"></div>
+    <div class="frow" style="border-bottom:none"><label for="rk-l">Pridėtinis cukrus, g</label>
+      <input id="rk-l" type="number" inputmode="decimal" placeholder="nebūtina"></div>
   </div>
   <div class="err" id="rk-err"></div>
   <button class="btn" id="rk-save">Pridėti į šiandien</button>
@@ -564,37 +619,40 @@
 /* =========================================================
    1. DUOMENYS
    ========================================================= */
-const NUMATYTA = { kcal:3100, prot:130, carb:445, fat:80, auto:false, autoData:null };
-const SEKLOS_V = 1;   // pakelk numerį, kai pridedi naujų sėklos produktų
+// laisvas = pridėtinis cukrus. PSO: <10% energijos, geriau <5%.
+// Prie ~2900 kcal tai 72 g ir 36 g. 50 g — vidurys, realus taikinys.
+const NUMATYTA = { kcal:3100, prot:130, carb:445, fat:80, laisvas:50, auto:false, autoData:null };
+const SEKLOS_V = 3;   // pakelk numerį, kai pridedi naujų sėklos produktų
 // kcal / b(altymai) / a(ngliavandeniai) / r(iebalai) - viskas 100 g
 // porc = įprasta porcija gramais, porcPav = jos pavadinimas
 const SEKLA = [
   // --- nuo tavo etikečių ---
-  { id:'pienas',    pav:'Pienas Dvaro 2,5%',        kcal:54,  b:3.2,  a:4.7,  r:2.5,  porc:200, porcPav:'stiklinė' },
-  { id:'kiausinis', pav:'Kiaušiniai',                kcal:139, b:13,   a:0.6,  r:9.7,  porc:58,  porcPav:'1 vnt' },
-  { id:'kazeinasA', pav:'Kazeinas — šokoladinis',    kcal:333, b:82.4, a:3.7,  r:1.7,  porc:30,  porcPav:'1,5 kaušelio' },
-  { id:'kazeinasB', pav:'Kazeinas — braškinis',      kcal:350, b:84.1, a:3.9,  r:1.5,  porc:30,  porcPav:'1,5 kaušelio' },
-  { id:'jogurtas',  pav:'Graikiškas jogurtas 3,9%',  kcal:88,  b:9,    a:4.2,  r:3.9,  porc:150, porcPav:'dubenėlis' },
-  { id:'varske',    pav:'Grūdėtoji varškė 5%',       kcal:102, b:11,   a:3.2,  r:5,    porc:200, porcPav:'dubenėlis' },
-  { id:'suris',     pav:'Kietas sūris Rokiškio',     kcal:346, b:34,   a:0,    r:23.3, porc:30,  porcPav:'riekelės' },
-  { id:'bagelis',   pav:'Bagelis su sezamais',       kcal:354, b:11,   a:63,   r:5.8,  porc:80,  porcPav:'1 vnt' },
-  { id:'makaronai', pav:'Makaronai (sausi)',         kcal:351, b:14,   a:70,   r:1,    porc:100, porcPav:'porcija' },
-  { id:'ryziai',    pav:'Ryžiai (sausi)',            kcal:355, b:7.5,  a:77.8, r:1,    porc:125, porcPav:'1 pakelis' },
-  { id:'medus',     pav:'Medus',                     kcal:324, b:0.3,  a:81,   r:0,    porc:20,  porcPav:'šaukštas' },
-  { id:'desra',     pav:'Augalinė dešra (salami)',   kcal:293, b:26.9, a:10.2, r:16.1, porc:30,  porcPav:'riekelės' },
-  { id:'gardeng',   pav:'Garden Gourmet kepsneliai', kcal:235, b:12.3, a:17.6, r:11.7, porc:180, porcPav:'pakuotė' },
-  { id:'likechili', pav:'Like Sweet & Chili sojos',  kcal:104, b:16,   a:6.6,  r:0.3,  porc:180, porcPav:'pakuotė' },
+  { id:'pienas',    pav:'Pienas Dvaro 2,5%',        kcal:54,  b:3.2,  a:4.7,  c:4.7, l:0, r:2.5,  porc:200, porcPav:'stiklinė' },
+  { id:'kiausinis', pav:'Kiaušiniai',                kcal:139, b:13,   a:0.6,  c:0.4, l:0, r:9.7,  porc:58,  porcPav:'1 vnt' },
+  { id:'kazeinasA', pav:'Kazeinas — šokoladinis',    kcal:333, b:82.4, a:3.7,  c:3.7, l:0, r:1.7,  porc:30,  porcPav:'1,5 kaušelio' },
+  { id:'kazeinasB', pav:'Kazeinas — braškinis',      kcal:350, b:84.1, a:3.9,  c:3.9, l:0, r:1.5,  porc:30,  porcPav:'1,5 kaušelio' },
+  { id:'jogurtas',  pav:'Graikiškas jogurtas 3,9%',  kcal:88,  b:9,    a:4.2,  c:4.2, l:0, r:3.9,  porc:150, porcPav:'dubenėlis' },
+  { id:'varske',    pav:'Grūdėtoji varškė 5%',       kcal:102, b:11,   a:3.2,  c:3.2, l:0, r:5,    porc:200, porcPav:'dubenėlis' },
+  { id:'suris',     pav:'Kietas sūris Rokiškio',     kcal:346, b:34,   a:0,    c:0, l:0, r:23.3, porc:30,  porcPav:'riekelės' },
+  { id:'bagelis',   pav:'Bagelis su sezamais',       kcal:354, b:11,   a:63,   c:6, l:5, r:5.8,  porc:80,  porcPav:'1 vnt' },
+  { id:'makaronai', pav:'Makaronai (sausi)',         kcal:351, b:14,   a:70,   c:3, l:0, r:1,    porc:100, porcPav:'porcija' },
+  { id:'ryziai',    pav:'Ryžiai (sausi)',            kcal:355, b:7.5,  a:77.8, c:0.1, l:0, r:1,    porc:125, porcPav:'1 pakelis' },
+  { id:'medus',     pav:'Medus',                     kcal:324, b:0.3,  a:81,   c:81, l:81, r:0,    porc:20,  porcPav:'šaukštas' },
+  { id:'desra',     pav:'Augalinė dešra (salami)',   kcal:293, b:26.9, a:10.2, c:2, l:1.5, r:16.1, porc:30,  porcPav:'riekelės' },
+  { id:'gardeng',   pav:'Garden Gourmet kepsneliai', kcal:235, b:12.3, a:17.6, c:2, l:1, r:11.7, porc:180, porcPav:'pakuotė' },
+  { id:'likechili', pav:'Like Sweet & Chili sojos',  kcal:104, b:16,   a:6.6,  c:3, l:2, r:0.3,  porc:180, porcPav:'pakuotė' },
   // --- nepakuoti, iš duomenų bazių ---
-  { id:'vistiena',  pav:'Vištienos krūtinėlė (žalia)', kcal:120, b:22.5, a:0,    r:2.6,  porc:150, porcPav:'porcija' },
-  { id:'lasisa',    pav:'Lašiša (žalia)',            kcal:208, b:20.4, a:0,    r:13.4, porc:150, porcPav:'porcija' },
-  { id:'bananas',   pav:'Bananas',                   kcal:89,  b:1.1,  a:22.8, r:0.3,  porc:118, porcPav:'1 vnt' },
-  { id:'braskes',   pav:'Braškės',                   kcal:32,  b:0.7,  a:7.7,  r:0.3,  porc:150, porcPav:'sauja' },
-  { id:'silauoges', pav:'Šilauogės',                 kcal:57,  b:0.7,  a:14.5, r:0.3,  porc:100, porcPav:'sauja' },
-  { id:'arbuzas',   pav:'Arbūzas',                   kcal:30,  b:0.6,  a:7.6,  r:0.2,  porc:250, porcPav:'riekė' },
-  { id:'pomidorai', pav:'Pomidorai',                 kcal:18,  b:0.9,  a:3.9,  r:0.2,  porc:100, porcPav:'1 vnt' },
-  { id:'agurkai',   pav:'Agurkai',                   kcal:15,  b:0.7,  a:3.6,  r:0.1,  porc:100, porcPav:'1 vnt' },
-  { id:'spinatai',  pav:'Špinatai',                  kcal:23,  b:2.9,  a:3.6,  r:0.4,  porc:50,  porcPav:'sauja' },
-  { id:'salotos',   pav:'Salotos (lapinės)',         kcal:15,  b:1.4,  a:2.9,  r:0.2,  porc:50,  porcPav:'sauja' }
+  { id:'vistiena',  pav:'Vištienos krūtinėlė (žalia)', kcal:120, b:22.5, a:0,    c:0, l:0, r:2.6,  porc:150, porcPav:'porcija' },
+  { id:'lasisa',    pav:'Lašiša (žalia)',            kcal:208, b:20.4, a:0,    c:0, l:0, r:13.4, porc:150, porcPav:'porcija' },
+  { id:'batatas',   pav:'Batatas (saldžioji bulvė, žalias)', kcal:86, b:1.6, a:20.1, c:4.2, l:0, r:0.1, porc:200, porcPav:'porcija' },
+  { id:'bananas',   pav:'Bananas',                   kcal:89,  b:1.1,  a:22.8, c:12, l:0, r:0.3,  porc:118, porcPav:'1 vnt' },
+  { id:'braskes',   pav:'Braškės',                   kcal:32,  b:0.7,  a:7.7,  c:4.9, l:0, r:0.3,  porc:150, porcPav:'sauja' },
+  { id:'silauoges', pav:'Šilauogės',                 kcal:57,  b:0.7,  a:14.5, c:10, l:0, r:0.3,  porc:100, porcPav:'sauja' },
+  { id:'arbuzas',   pav:'Arbūzas',                   kcal:30,  b:0.6,  a:7.6,  c:6, l:0, r:0.2,  porc:250, porcPav:'riekė' },
+  { id:'pomidorai', pav:'Pomidorai',                 kcal:18,  b:0.9,  a:3.9,  c:2.6, l:0, r:0.2,  porc:100, porcPav:'1 vnt' },
+  { id:'agurkai',   pav:'Agurkai',                   kcal:15,  b:0.7,  a:3.6,  c:1.7, l:0, r:0.1,  porc:100, porcPav:'1 vnt' },
+  { id:'spinatai',  pav:'Špinatai',                  kcal:23,  b:2.9,  a:3.6,  c:0.4, l:0, r:0.4,  porc:50,  porcPav:'sauja' },
+  { id:'salotos',   pav:'Salotos (lapinės)',         kcal:15,  b:1.4,  a:2.9,  c:0.8, l:0, r:0.2,  porc:50,  porcPav:'sauja' }
 ];
 /* --- atmintis --- */
 function skaityti(raktas, atsarginis){
@@ -621,6 +679,11 @@ if(!Array.isArray(produktai)){
 }else if(skaityti('seklosV', 0) < SEKLOS_V){
   const turimi = new Set(produktai.map(p => p.id));
   SEKLA.forEach(p => { if(!turimi.has(p.id)) produktai.push(p); });
+  // seniems sėklos produktams įrašom cukraus duomenis
+  const pagalId = {}; SEKLA.forEach(p => pagalId[p.id] = p);
+  produktai.forEach(p => {
+    if(p.c === undefined && pagalId[p.id]){ p.c = pagalId[p.id].c; p.l = pagalId[p.id].l; }
+  });
   rasyti('seklosV', SEKLOS_V);
 }
 rasyti('produktai', produktai);
@@ -647,8 +710,11 @@ function suma(){
     kcal: s.kcal + v.kcal,
     b: s.b + v.b,
     a: s.a + v.a,
-    r: s.r + v.r
-  }), { kcal:0, b:0, a:0, r:0 });
+    r: s.r + v.r,
+    c: s.c + (v.c || 0),
+    l: s.l + (v.l || 0),
+    nezinoma: s.nezinoma + (v.l === undefined ? 1 : 0)
+  }), { kcal:0, b:0, a:0, r:0, c:0, l:0, nezinoma:0 });
 }
 /* =========================================================
    3. PIEŠIMAS
@@ -666,9 +732,31 @@ function perpiesti(){
   const dalis = (a, b) => Math.min(100, b > 0 ? (a / b) * 100 : 0) + '%';
   $('m-kcal').style.width = dalis(s.kcal, tikslai.kcal);
   $('m-prot').style.width = dalis(s.b, tikslai.prot);
+  piestiCukru(s);
   piestiValgius();
   if(typeof piestiTikslus === 'function'){ piestiTikslus(); piestiPriminimus(); }
 }
+function piestiCukru(s){
+  const tikslas = tikslai.laisvas || 0;
+  const virsyta = tikslas > 0 && s.l > tikslas;
+  $('cukVal').textContent = desimtis(s.l);
+  $('cukTiksl').textContent = '/ ' + tikslas + ' g';
+  $('cukFill').style.width = Math.min(100, tikslas > 0 ? (s.l / tikslas) * 100 : 0) + '%';
+  $('cukJuosta').classList.toggle('virsyta', virsyta);
+  const sub = $('cukSub');
+  sub.classList.toggle('virsyta', virsyta);
+  let t = '';
+  if(virsyta){
+    t = '⚠ Viršyta ' + desimtis(s.l - tikslas) + ' g. ';
+  }
+  t += 'Bendras cukrus ' + desimtis(s.c) + ' g — skirtumas yra vaisių ir pieno cukrus, jo riboti nereikia.';
+  if(s.nezinoma > 0){
+    t += ' ' + s.nezinoma + ' įraš' + (s.nezinoma === 1 ? 'as' : 'ai') +
+         ' be cukraus duomenų — tikras skaičius didesnis.';
+  }
+  sub.textContent = t;
+}
+
 function piestiValgius(){
   const valgiai = siandienosValgiai();
   const vieta = $('valgiai');
@@ -762,17 +850,24 @@ function skaiciuoti(){
   if(!pasirinktas) return { kcal:0, b:0, a:0, r:0, g:0 };
   const g = Math.max(0, parseFloat($('s-g').value) || 0);
   const k = g / 100;
+  const turiCukru = pasirinktas.c !== undefined;
   const rez = {
     g,
     kcal: pasirinktas.kcal * k,
     b: pasirinktas.b * k,
     a: pasirinktas.a * k,
-    r: pasirinktas.r * k
+    r: pasirinktas.r * k,
+    c: turiCukru ? pasirinktas.c * k : undefined,
+    l: turiCukru ? (pasirinktas.l || 0) * k : undefined
   };
   $('s-kcal').textContent = sveikas(rez.kcal);
   $('s-b').textContent    = desimtis(rez.b);
   $('s-a').textContent    = desimtis(rez.a);
   $('s-r').textContent    = desimtis(rez.r);
+  $('s-cuk').textContent  = turiCukru
+    ? 'Cukrus ' + desimtis(rez.c) + ' g' + (rez.l > 0 ? ' · iš jų pridėtinio ' + desimtis(rez.l) + ' g' : ' · pridėtinio nėra')
+    : 'Cukraus duomenų nėra';
+  $('s-cuk').classList.toggle('yra', turiCukru && rez.l > 0);
   return rez;
 }
 $('s-g').addEventListener('input', skaiciuoti);
@@ -788,14 +883,16 @@ document.querySelectorAll('.step').forEach(b => {
 $('s-add').addEventListener('click', () => {
   const rez = skaiciuoti();
   if(!pasirinktas || rez.g <= 0) return;
-  siandienosValgiai().push({
+  const irasas = {
     pav: pasirinktas.pav,
     g: sveikas(rez.g),
     kcal: rez.kcal,
     b: rez.b,
     a: rez.a,
     r: rez.r
-  });
+  };
+  if(rez.c !== undefined){ irasas.c = rez.c; irasas.l = rez.l; }
+  siandienosValgiai().push(irasas);
   rasyti('dienos', dienos);
   uzdarytiLapeli();
   rodytiPanele('siandien');
@@ -818,7 +915,8 @@ function uzdarytiForma(){
   $('sheet2').classList.remove('on');
 }
 $('naujasProduktas').addEventListener('click', () => {
-  ['n-pav','n-kcal','n-b','n-a','n-r','n-p'].forEach(id => $(id).value = '');
+  ['n-pav','n-kcal','n-b','n-a','n-r','n-c','n-p'].forEach(id => $(id).value = '');
+  $('n-l').value = '0';
   $('n-err').textContent = '';
   $('bg2').classList.add('on');
   $('sheet2').classList.add('on');
@@ -837,12 +935,18 @@ $('n-save').addEventListener('click', () => {
     $('n-err').textContent = 'Užpildyk kalorijas ir visus tris makro.';
     return;
   }
-  produktai.push({
+  const cukr = parseFloat($('n-c').value);
+  const naujas = {
     id: 'p' + Date.now(),
     pav, kcal, b, a, r,
     porc: isNaN(porc) || porc <= 0 ? 100 : porc,
     porcPav: 'porcija'
-  });
+  };
+  if(!isNaN(cukr) && cukr >= 0){
+    naujas.c = Math.min(cukr, a);                       // cukrus negali viršyti angliavandenių
+    naujas.l = $('n-l').value === '1' ? naujas.c : 0;
+  }
+  produktai.push(naujas);
   rasyti('produktai', produktai);
   uzdarytiForma();
   piestiProduktus();
@@ -850,7 +954,7 @@ $('n-save').addEventListener('click', () => {
 /* =========================================================
    6. TIKSLAI, NAVIGACIJA
    ========================================================= */
-const laukai = { kcal:'t-kcal', prot:'t-prot', carb:'t-carb', fat:'t-fat' };
+const laukai = { kcal:'t-kcal', prot:'t-prot', carb:'t-carb', fat:'t-fat', laisvas:'t-laisvas' };
 let laikmatis;
 function uzpildytiLaukus(){
   Object.entries(laukai).forEach(([raktas, id]) => $(id).value = tikslai[raktas]);
@@ -1524,7 +1628,8 @@ function piestiTikslus(){
 /* --- priminimai programėlės viduje --- */
 function piestiPriminimus(){
   const r = siandienRaktas(), val = [];
-  const s = (dienos[r] || []).reduce((a,v) => ({kcal:a.kcal+v.kcal, b:a.b+v.b}), {kcal:0,b:0});
+  const s = (dienos[r] || []).reduce((a,v) => ({kcal:a.kcal+v.kcal, b:a.b+v.b, l:a.l+(v.l||0)}),
+    {kcal:0, b:0, l:0});
   const valanda = new Date().getHours();
 
   // 1) atsarginė kopija — svarbiausias, nes praradus viską atkurti neįmanoma
@@ -1539,7 +1644,12 @@ function piestiPriminimus(){
   if(svoriai[r] === undefined && valanda >= 9){
     val.push({ t:'Šiandien dar nepasisvėrei. Jei jau pavalgei — praleisk, rytoj ryte.' });
   }
-  // 3) vakarinis kalorijų likutis
+  // 3) pridėtinis cukrus
+  if(tikslai.laisvas > 0 && s.l > tikslai.laisvas){
+    val.push({ svarbu:true, t:'Pridėtinio cukraus šiandien <b>' + sveikas(s.l) + ' g</b>, riba ' +
+      tikslai.laisvas + ' g. Ne katastrofa auginant masę, bet jei kartojasi kasdien — verta pakeisti.' });
+  }
+  // 3b) vakarinis kalorijų likutis
   if(valanda >= 19){
     const truksta = tikslai.kcal - s.kcal;
     if(truksta > 300 && s.kcal > 0){
@@ -1554,13 +1664,68 @@ function piestiPriminimus(){
     `<div class="nudge${v.svarbu ? ' perspejimas' : ''}">${v.t}</div>`).join('');
 }
 
+/* --- produktų sąrašo įklijavimas: prideda, nieko netrina --- */
+function uzdarytiIkl(){
+  $('bg5').classList.remove('on');
+  $('sheet5').classList.remove('on');
+}
+$('iklijuotiProduktus').addEventListener('click', () => {
+  $('ip-tekstas').value = '';
+  $('ip-err').textContent = '';
+  $('bg5').classList.add('on');
+  $('sheet5').classList.add('on');
+  $('ip-tekstas').focus();
+});
+$('ip-close').addEventListener('click', uzdarytiIkl);
+$('bg5').addEventListener('click', uzdarytiIkl);
+$('ip-save').addEventListener('click', () => {
+  const t = $('ip-tekstas').value.trim();
+  if(!t){ $('ip-err').textContent = 'Tuščia — įklijuok tekstą.'; return; }
+  let d;
+  try { d = JSON.parse(t); }
+  catch(e){ $('ip-err').textContent = 'Tekstas sugadintas. Nukopijuok visą, nuo { iki }.'; return; }
+  const nauji = d && Array.isArray(d.produktai) ? d.produktai : (Array.isArray(d) ? d : null);
+  if(!nauji){ $('ip-err').textContent = 'Tai nepanašu į produktų sąrašą.'; return; }
+
+  const turimi = new Set(produktai.map(x => bediakritiku(x.pav)));
+  let prideta = 0, praleista = 0, blogi = 0;
+  nauji.forEach(x => {
+    if(!x || typeof x.pav !== 'string' || !x.pav.trim()){ blogi++; return; }
+    const kcal = Number(x.kcal), b = Number(x.b), a = Number(x.a), r = Number(x.r);
+    if([kcal,b,a,r].some(v => isNaN(v) || v < 0)){ blogi++; return; }
+    if(turimi.has(bediakritiku(x.pav))){ praleista++; return; }
+    const porc = Number(x.porc);
+    const irasas = {
+      id: 'i' + Date.now().toString(36) + prideta,
+      pav: x.pav.trim(), kcal, b, a, r,
+      porc: (isNaN(porc) || porc <= 0) ? 100 : porc,
+      porcPav: (typeof x.porcPav === 'string' && x.porcPav) ? x.porcPav : 'porcija'
+    };
+    const cc = Number(x.c), ll = Number(x.l);
+    if(!isNaN(cc) && cc >= 0){
+      irasas.c = Math.min(cc, a);
+      irasas.l = (!isNaN(ll) && ll >= 0) ? Math.min(ll, irasas.c) : 0;
+    }
+    produktai.push(irasas);
+    turimi.add(bediakritiku(x.pav));
+    prideta++;
+  });
+  produktai.sort((x, y) => x.pav.localeCompare(y.pav, 'lt'));
+  rasyti('produktai', produktai);
+  uzdarytiIkl();
+  piestiProduktus();
+  alert('Pridėta: ' + prideta +
+    (praleista ? '\nPraleista (jau turėjai): ' + praleista : '') +
+    (blogi ? '\nNetinkamų įrašų: ' + blogi : ''));
+});
+
 /* --- rankinis įrašas: kai pats suskaičiavai sumas --- */
 function uzdarytiRanka(){
   $('bg4').classList.remove('on');
   $('sheet4').classList.remove('on');
 }
 $('ivestiRanka').addEventListener('click', () => {
-  ['rk-pav','rk-kcal','rk-b','rk-a','rk-r'].forEach(id => $(id).value = '');
+  ['rk-pav','rk-kcal','rk-b','rk-a','rk-r','rk-l'].forEach(id => $(id).value = '');
   $('rk-err').textContent = '';
   $('bg4').classList.add('on');
   $('sheet4').classList.add('on');
@@ -1577,10 +1742,10 @@ $('rk-save').addEventListener('click', () => {
     $('rk-err').textContent = 'Įrašyk bent vieną skaičių.';
     return;
   }
-  siandienosValgiai().push({
-    pav: $('rk-pav').value.trim() || 'Įrašyta ranka',
-    g: 0, kcal, b, a, r
-  });
+  const lais = parseFloat($('rk-l').value);
+  const ir = { pav: $('rk-pav').value.trim() || 'Įrašyta ranka', g: 0, kcal, b, a, r };
+  if(!isNaN(lais) && lais >= 0){ ir.l = lais; ir.c = lais; }
+  siandienosValgiai().push(ir);
   rasyti('dienos', dienos);
   uzdarytiRanka();
   perpiesti();
