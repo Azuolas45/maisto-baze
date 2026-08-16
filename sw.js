@@ -1,9 +1,9 @@
 /* Maisto bazė — service worker.
    Dėl jo programėlė veikia be interneto ir įsirašo į telefoną.
 
-   SVARBU: pakeitei index.html? Pakelk CACHE numerį (v1 -> v2),
+   SVARBU: pakeitei index.html? Pakelk CACHE numerį (v3 -> v4),
    kitaip telefonas ir toliau rodys seną versiją. */
-const CACHE = 'maisto-baze-v1';
+const CACHE = 'maisto-baze-v3';
 const FAILAI = [
   './',
   './index.html',
