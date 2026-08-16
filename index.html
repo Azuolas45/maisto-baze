@@ -159,6 +159,95 @@
   .legenda span{display:flex;align-items:center;gap:6px}
   .lg-taskas{width:7px;height:7px;border-radius:50%;background:var(--muted)}
   .lg-linija{width:14px;height:2px;background:var(--brass)}
+  /* --- AUTOMATINIAI TIKSLAI --- */
+  .rezimas{
+    display:flex;background:var(--bg);border:1px solid var(--line);margin-bottom:12px;
+  }
+  .rezimas button{
+    flex:1;background:none;color:var(--muted);font-size:12px;font-weight:600;
+    padding:11px 6px;border:none;
+  }
+  .rezimas button.on{background:var(--brass);color:#14181D}
+  .auto-info{
+    background:var(--surface);border:1px solid var(--line);border-left:2px solid var(--brass);
+    padding:14px 16px;margin-top:12px;font-size:13px;line-height:1.55;color:var(--muted);
+  }
+  .auto-info b{color:var(--text);font-weight:600}
+  .auto-info.laukia{border-left-color:var(--muted)}
+  .goals.uzrakinta .row input{
+    color:var(--muted);border-bottom-color:var(--line);
+  }
+  /* --- TIKSLAI --- */
+  .tikslai{background:var(--surface);border:1px solid var(--line)}
+  .tik{
+    display:flex;align-items:center;gap:12px;width:100%;background:none;
+    padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;
+  }
+  .tik:last-child{border-bottom:none}
+  .zenklas{
+    width:20px;height:20px;flex:none;border:1px solid var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);
+  }
+  .tik.ok .zenklas{background:var(--brass);border-color:var(--brass);color:#14181D;font-weight:700}
+  .tik .txt{flex:1;min-width:0}
+  .tik .pav{font-size:14px;color:var(--muted)}
+  .tik.ok .pav{color:var(--text)}
+  .tik .sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .tik .kar{font-size:12px;color:var(--muted);white-space:nowrap}
+  .tik.spaudz{cursor:pointer}
+  .serija{
+    display:flex;gap:24px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);
+  }
+  .serija div{flex:1}
+  .serija b{display:block;font-size:24px;font-weight:600;line-height:1.1}
+  .serija span{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+  .nudge{
+    background:var(--surface);border:1px solid var(--line);border-left:2px solid var(--brass);
+    padding:14px 16px;margin-bottom:14px;font-size:13px;line-height:1.5;color:var(--muted);
+  }
+  .nudge b{color:var(--text);font-weight:600}
+  .nudge.perspejimas{border-left-color:var(--clay)}
+  /* --- JĖGA --- */
+  .rek{
+    display:flex;align-items:center;gap:12px;width:100%;
+    background:none;padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;
+  }
+  .rek:last-child{border-bottom:none}
+  .rek .txt{flex:1;min-width:0}
+  .rek .pav{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rek .sub{font-size:12px;color:var(--muted);margin-top:3px}
+  .rek .sub.stigo{color:var(--clay)}
+  .rek .val{font-size:13px;text-align:right;white-space:nowrap}
+  .rek .val b{color:var(--brass);font-weight:600;font-size:15px}
+  .rek .val span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+  .kop{background:var(--surface);border:1px solid var(--line);margin-bottom:10px}
+  .kop-galva{
+    display:flex;align-items:center;gap:12px;width:100%;
+    background:none;padding:15px 16px;text-align:left;
+  }
+  .kop-galva .txt{flex:1;min-width:0}
+  .kop-galva .pav{font-size:14px;font-weight:600}
+  .kop-galva .sub{font-size:12px;color:var(--muted);margin-top:4px}
+  .kop-galva .rodykle{color:var(--muted);font-size:12px;transition:transform .2s}
+  .kop.on .kop-galva .rodykle{transform:rotate(90deg)}
+  .kop-juosta{height:2px;background:var(--line);margin:0 16px 14px}
+  .kop-juosta i{display:block;height:100%;background:var(--brass);transition:width .3s ease}
+  .zingsniai{display:none;border-top:1px solid var(--line)}
+  .kop.on .zingsniai{display:block}
+  .zing{
+    display:flex;align-items:center;gap:12px;width:100%;background:none;
+    padding:12px 16px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;
+    color:var(--muted);
+  }
+  .zing:last-child{border-bottom:none}
+  .zing .nr{
+    width:20px;height:20px;flex:none;border:1px solid var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:10px;
+  }
+  .zing.padaryta{color:var(--text)}
+  .zing.padaryta .nr{background:var(--line);border-color:var(--line);color:var(--text)}
+  .zing.dabar{color:var(--brass)}
+  .zing.dabar .nr{background:var(--brass);border-color:var(--brass);color:#14181D;font-weight:700}
   /* --- navigacija --- */
   nav{
     position:fixed;bottom:0;left:0;right:0;
@@ -167,8 +256,8 @@
   }
   nav button{
     flex:1;background:none;color:var(--muted);
-    font-size:11px;font-weight:600;letter-spacing:.1em;
-    text-transform:uppercase;padding:18px 4px;
+    font-size:10px;font-weight:600;letter-spacing:.06em;
+    text-transform:uppercase;padding:18px 2px;
     border-top:2px solid transparent;margin-top:-1px;
   }
   nav button.on{color:var(--text);border-top-color:var(--brass)}
@@ -244,6 +333,7 @@
   </header>
   <!-- ŠIANDIEN -->
   <div class="panel on" id="p-siandien">
+    <div id="nudges"></div>
     <div class="hero">
       <div class="stat">
         <div class="num" id="kcal">0</div>
@@ -264,16 +354,30 @@
       <h2>Valgiai</h2>
       <div id="valgiai"></div>
       <button class="btn" id="pridetiValgi">Pridėti valgį</button>
+      <button class="btn-ghost" id="ivestiRanka">Įvesti skaičius ranka</button>
     </section>
     <section>
-      <h2>Dienos tikslai</h2>
-      <div class="goals">
+      <h2>Šios dienos tikslai <span class="hint" id="tik-santrauka"></span></h2>
+      <div class="tikslai" id="tikslaiSarasas"></div>
+      <div class="serija">
+        <div><b id="ser-svoris">0</b><span>dienų sveriamasi iš eilės</span></div>
+        <div><b id="sav-treniruotes">0/6</b><span>treniruotės šią savaitę</span></div>
+      </div>
+    </section>
+    <section>
+      <h2>Dienos normos</h2>
+      <div class="rezimas">
+        <button id="rez-auto">Automatinis</button>
+        <button id="rez-rankinis">Rankinis</button>
+      </div>
+      <div class="goals" id="normos">
         <div class="row"><label for="t-kcal">Kalorijos</label><input id="t-kcal" type="number" inputmode="numeric"></div>
         <div class="row"><label for="t-prot">Baltymai, g</label><input id="t-prot" type="number" inputmode="numeric"></div>
         <div class="row"><label for="t-carb">Angliavandeniai, g</label><input id="t-carb" type="number" inputmode="numeric"></div>
         <div class="row"><label for="t-fat">Riebalai, g</label><input id="t-fat" type="number" inputmode="numeric"></div>
       </div>
       <div class="saved" id="saved">Išsaugota</div>
+      <div id="auto-info"></div>
     </section>
   </div>
   <!-- PRODUKTAI -->
@@ -336,11 +440,28 @@
       <div id="sv-sarasas"></div>
     </section>
   </div>
+  <!-- JĖGA -->
+  <div class="panel" id="p-jega">
+    <section style="margin-top:0">
+      <h2>Rekordai <span class="hint" id="rek-kiek"></span></h2>
+      <div id="rekordai"></div>
+      <button class="btn" id="pridetiRekorda">Naujas rekordas</button>
+    </section>
+    <section>
+      <h2>Įgūdžiai <span class="hint">spausk, kad pamatytum kopėčias</span></h2>
+      <div id="igudziai"></div>
+    </section>
+    <section>
+      <h2>Istorija</h2>
+      <div id="rekIstorija"></div>
+    </section>
+  </div>
 </div>
 <nav>
   <button class="on" data-p="siandien">Šiandien</button>
   <button data-p="produktai">Produktai</button>
   <button data-p="svoris">Svoris</button>
+  <button data-p="jega">Jėga</button>
 </nav>
 <!-- porcijos lapelis -->
 <div class="bg" id="bg"></div>
@@ -389,11 +510,61 @@
   <div class="err" id="n-err"></div>
   <button class="btn" id="n-save">Išsaugoti</button>
 </div>
+<!-- rankinio įrašo lapelis -->
+<div class="bg" id="bg4"></div>
+<div class="sheet" id="sheet4">
+  <div class="sheet-head">
+    <div>
+      <div class="sheet-pav">Įvesti ranka</div>
+      <div class="sheet-sub">Kai jau pats suskaičiavai — įrašyk sumas</div>
+    </div>
+    <button class="close" id="rk-close">&times;</button>
+  </div>
+  <div style="margin-top:18px">
+    <div class="frow"><label for="rk-pav">Kas tai</label>
+      <input id="rk-pav" type="text" placeholder="Pusryčiai" style="text-align:left"></div>
+    <div class="frow"><label for="rk-kcal">Kalorijos</label>
+      <input id="rk-kcal" type="number" inputmode="decimal"></div>
+    <div class="frow"><label for="rk-b">Baltymai, g</label>
+      <input id="rk-b" type="number" inputmode="decimal"></div>
+    <div class="frow"><label for="rk-a">Angliavandeniai, g</label>
+      <input id="rk-a" type="number" inputmode="decimal"></div>
+    <div class="frow"><label for="rk-r">Riebalai, g</label>
+      <input id="rk-r" type="number" inputmode="decimal"></div>
+  </div>
+  <div class="err" id="rk-err"></div>
+  <button class="btn" id="rk-save">Pridėti į šiandien</button>
+</div>
+<!-- rekordo lapelis -->
+<div class="bg" id="bg3"></div>
+<div class="sheet" id="sheet3">
+  <div class="sheet-head">
+    <div>
+      <div class="sheet-pav">Naujas rekordas</div>
+      <div class="sheet-sub">Įrašyk tik tada, kai ką nors pagerinai</div>
+    </div>
+    <button class="close" id="r-close">&times;</button>
+  </div>
+  <div style="margin-top:18px">
+    <div class="frow"><label for="r-pratimas">Pratimas</label>
+      <select id="r-pratimas" style="flex:1;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--text);font-family:inherit;font-size:15px;padding:4px 2px;min-width:0"></select></div>
+    <div class="frow" id="r-kitas-eil" hidden><label for="r-kitas">Pavadinimas</label>
+      <input id="r-kitas" type="text" style="text-align:left"></div>
+    <div class="frow"><label for="r-kg">Svoris, kg</label>
+      <input id="r-kg" type="number" inputmode="decimal" step="0.5"></div>
+    <div class="frow"><label for="r-kart">Kartojimai</label>
+      <input id="r-kart" type="number" inputmode="numeric" step="1"></div>
+    <div class="frow"><label for="r-data">Data</label>
+      <input id="r-data" type="date" style="color-scheme:dark"></div>
+  </div>
+  <div class="err" id="r-err"></div>
+  <button class="btn" id="r-save">Išsaugoti</button>
+</div>
 <script>
 /* =========================================================
    1. DUOMENYS
    ========================================================= */
-const NUMATYTA = { kcal:3100, prot:130, carb:445, fat:80 };
+const NUMATYTA = { kcal:3100, prot:130, carb:445, fat:80, auto:false, autoData:null };
 const SEKLOS_V = 1;   // pakelk numerį, kai pridedi naujų sėklos produktų
 // kcal / b(altymai) / a(ngliavandeniai) / r(iebalai) - viskas 100 g
 // porc = įprasta porcija gramais, porcPav = jos pavadinimas
@@ -439,6 +610,10 @@ let tikslai   = Object.assign({}, NUMATYTA, skaityti('tikslai', {}));
 let produktai = skaityti('produktai', null);
 let dienos    = skaityti('dienos', {});
 let svoriai   = skaityti('svoriai', {});      // { '2026-08-15': 60.4 }
+let rekordai  = skaityti('rekordai', []);     // [{pratimas, kg, kart, data}]
+let treniruotes = skaityti('treniruotes', {});// { '2026-08-15': true }
+let kopijos   = skaityti('kopijos', {});      // { paskutine: '2026-08-15' }
+let igudziai  = skaityti('igudziai', {});     // { frontlever: {zingsnis:2, data:'...'} }
 // pirmas paleidimas arba nauji sėklos produktai
 if(!Array.isArray(produktai)){
   produktai = SEKLA.slice();
@@ -492,6 +667,7 @@ function perpiesti(){
   $('m-kcal').style.width = dalis(s.kcal, tikslai.kcal);
   $('m-prot').style.width = dalis(s.b, tikslai.prot);
   piestiValgius();
+  if(typeof piestiTikslus === 'function'){ piestiTikslus(); piestiPriminimus(); }
 }
 function piestiValgius(){
   const valgiai = siandienosValgiai();
@@ -504,7 +680,7 @@ function piestiValgius(){
     <div class="item">
       <div class="txt">
         <div class="pav">${saugu(v.pav)}</div>
-        <div class="sub">${v.g} g</div>
+        <div class="sub">${v.g > 0 ? v.g + ' g' : 'ranka'}</div>
       </div>
       <div class="val">
         <b>${sveikas(v.kcal)}</b> kcal
@@ -681,6 +857,7 @@ function uzpildytiLaukus(){
 }
 Object.entries(laukai).forEach(([raktas, id]) => {
   $(id).addEventListener('input', e => {
+    if(tikslai.auto){ uzpildytiLaukus(); return; }   // automatiniame režime nekeičiam
     const v = parseInt(e.target.value, 10);
     tikslai[raktas] = isNaN(v) ? 0 : v;
     rasyti('tikslai', tikslai);
@@ -718,7 +895,7 @@ function eksportuoti(){
   const paketas = {
     v: KOPIJOS_V,
     data: siandienRaktas(),
-    tikslai, produktai, dienos, svoriai,
+    tikslai, produktai, dienos, svoriai, rekordai, igudziai, treniruotes,
     seklosV: skaityti('seklosV', 0)
   };
   const failas = new Blob([JSON.stringify(paketas, null, 2)], {type:'application/json'});
@@ -727,6 +904,9 @@ function eksportuoti(){
   a.download = 'maisto-baze-' + siandienRaktas() + '.json';
   a.click();
   URL.revokeObjectURL(a.href);
+  kopijos.paskutine = siandienRaktas();
+  rasyti('kopijos', kopijos);
+  perpiesti();
 }
 function importuoti(failas){
   const skaitytuvas = new FileReader();
@@ -740,6 +920,12 @@ function importuoti(failas){
     produktai = d.produktai;
     dienos    = d.dienos  || {};
     svoriai   = d.svoriai || {};
+    rekordai  = Array.isArray(d.rekordai) ? d.rekordai : [];
+    igudziai  = d.igudziai || {};
+    treniruotes = d.treniruotes || {};
+    rasyti('treniruotes', treniruotes);
+    rasyti('rekordai', rekordai);
+    rasyti('igudziai', igudziai);
     rasyti('tikslai', tikslai);
     rasyti('produktai', produktai);
     rasyti('dienos', dienos);
@@ -749,6 +935,7 @@ function importuoti(failas){
     piestiProduktus();
     perpiesti();
     perpiestiSvori();
+    perpiestiJega();
     alert('Atkurta.');
   };
   skaitytuvas.readAsText(failas);
@@ -934,6 +1121,9 @@ function paruostiSvorioLaukus(){
   $('sv-kg').value = turimas !== undefined ? turimas : '';
 }
 function perpiestiSvori(){
+  if(typeof piestiRezima === 'function' && taikytiAutomatinius()){
+    uzpildytiLaukus(); perpiesti();
+  }
   const vid = langoVidurkis(siandienRaktas(), 7);
   $('sv-vid').textContent = vid === null ? '—' : vid.toFixed(1);
   const v = verdiktas();
@@ -959,6 +1149,7 @@ function perpiestiSvori(){
   }
   piestiGrafika();
   piestiSvoriuSarasa();
+  if(typeof piestiRezima === 'function') piestiRezima();
 }
 function piestiGrafika(){
   const vieta = $('sv-grafikas');
@@ -1048,13 +1239,458 @@ $('sv-saugoti').addEventListener('click', () => {
   paruostiSvorioLaukus();
   parodytiZinute('sv-zinute');
   perpiestiSvori();
+  perpiesti();
   if(svData !== siandienRaktas()) $('sv-kg').focus();
 });
 $('sv-kg').addEventListener('keydown', e => {
   if(e.key === 'Enter') $('sv-saugoti').click();
 });
 /* =========================================================
-   11. PALEIDIMAS
+   11. JĖGA — REKORDAI IR ĮGŪDŽIAI
+   ========================================================= */
+const PRATIMAI = [
+  'Spaudimas gulint',
+  'Pritūpimai',
+  'Mirties trauka',
+  'Spaudimas virš galvos',
+  'Prisitraukimai su svoriu',
+  'Lygiagretės su svoriu',
+  'Irklavimas su štanga'
+];
+const PULLUP = 'Prisitraukimai su svoriu';
+const PULLUP_TIKSLAS = { kg: 20, kart: 5 };   // metų tikslas — maždaug front lever lygis
+const UZSTRIGO_DIENOS = 42;                   // 6 savaitės be rekordo = sustojai
+
+const KOPECIOS = [
+  { id:'frontlever', pav:'Front lever', zingsniai:[
+      'Tuck laikymas 3×20 s',
+      'Advanced tuck 3×15 s',
+      'Viena koja ištiesta 3×12 s (kiekviena)',
+      'Straddle 3×10 s',
+      'Pilnas front lever 5 s'
+  ]},
+  { id:'hspu', pav:'Atsispaudimai ant rankų', zingsniai:[
+      'Pike atsispaudimai ant grindų',
+      'Pakelti pike atsispaudimai',
+      'Prie sienos neigiami, 5 s žemyn',
+      'Prie sienos, dalinė amplitudė',
+      'Prie sienos, pilna amplitudė',
+      'Laisvai stovint'
+  ]},
+  { id:'muscleup', pav:'Muscle-up', zingsniai:[
+      'Sprogstamieji prisitraukimai iki krūtinės',
+      'Su gumos pagalba',
+      'Su įsibėgėjimu (kipping)',
+      'Griežtas muscle-up'
+  ]}
+];
+
+function dienuNuo(raktas){
+  return Math.round((datalsRakto(siandienRaktas()) - datalsRakto(raktas)) / 86400000);
+}
+// geriausias rekordas: pirmiausia pagal svorį, tada pagal kartojimus
+function geriausias(pratimas){
+  const visi = rekordai.filter(r => r.pratimas === pratimas);
+  if(!visi.length) return null;
+  return visi.slice().sort((a,b) => (b.kg - a.kg) || (b.kart - a.kart))[0];
+}
+function pratimuSarasas(){
+  const is = new Set(PRATIMAI);
+  rekordai.forEach(r => is.add(r.pratimas));
+  return [...is].sort((a,b) => a.localeCompare(b,'lt'));
+}
+
+function piestiRekordus(){
+  const vardai = pratimuSarasas().filter(p => geriausias(p));
+  $('rek-kiek').textContent = rekordai.length ? rekordai.length + ' įrašų' : '';
+  if(!vardai.length){
+    $('rekordai').innerHTML =
+      '<div class="empty"><p>Dar nieko. Įrašyk savo dabartinius geriausius —<br>nuo jų skaičiuosime progresą.</p></div>';
+    return;
+  }
+  $('rekordai').innerHTML = '<div class="list">' + vardai.map(pav => {
+    const g = geriausias(pav);
+    const d = dienuNuo(g.data);
+    const stigo = d > UZSTRIGO_DIENOS;
+    const kada = d === 0 ? 'šiandien' : (d === 1 ? 'vakar' : 'prieš ' + d + ' d.');
+    return `
+    <div class="rek">
+      <div class="txt">
+        <div class="pav">${saugu(pav)}</div>
+        <div class="sub${stigo ? ' stigo' : ''}">${stigo ? '⚠ nieko naujo ' + kada : kada}</div>
+      </div>
+      <div class="val"><b>${desimtis(g.kg)} kg</b><span>× ${g.kart}</span></div>
+    </div>`;
+  }).join('') + '</div>';
+}
+
+function piestiIgudzius(){
+  let h = '';
+  // 1) prisitraukimai su svoriu — ne kopėčios, o skaičius
+  const g = geriausias(PULLUP);
+  const dalis = g ? Math.min(100, (g.kg / PULLUP_TIKSLAS.kg) * 100) : 0;
+  h += `
+    <div class="kop">
+      <div class="kop-galva">
+        <div class="txt">
+          <div class="pav">Prisitraukimai su svoriu</div>
+          <div class="sub">${ g
+            ? 'Dabar +' + desimtis(g.kg) + ' kg × ' + g.kart + ' · tikslas +' + PULLUP_TIKSLAS.kg + ' kg × ' + PULLUP_TIKSLAS.kart
+            : 'Dar neįrašyta. Tikslas +' + PULLUP_TIKSLAS.kg + ' kg × ' + PULLUP_TIKSLAS.kart }</div>
+        </div>
+      </div>
+      <div class="kop-juosta"><i style="width:${dalis.toFixed(1)}%"></i></div>
+    </div>`;
+
+  // 2) tikros kopėčios
+  KOPECIOS.forEach(k => {
+    const b = igudziai[k.id];
+    const dabar = b ? b.zingsnis : 0;          // 0 = dar nepradėta
+    const proc = (dabar / k.zingsniai.length) * 100;
+    const pastaba = dabar === 0
+      ? 'Dar nepradėta — spausk ir pasirink, kur esi'
+      : k.zingsniai[dabar-1] + (b.data ? ' · nuo ' + raktasTrumpai(b.data) : '');
+    h += `
+    <div class="kop" data-kop="${k.id}">
+      <div class="kop-galva">
+        <div class="txt">
+          <div class="pav">${saugu(k.pav)}</div>
+          <div class="sub">${dabar}/${k.zingsniai.length} · ${saugu(pastaba)}</div>
+        </div>
+        <span class="rodykle">▶</span>
+      </div>
+      <div class="kop-juosta"><i style="width:${proc.toFixed(1)}%"></i></div>
+      <div class="zingsniai">
+        ${k.zingsniai.map((z,i) => {
+          const nr = i + 1;
+          const kl = nr < dabar ? 'padaryta' : (nr === dabar ? 'dabar' : '');
+          return `<button class="zing ${kl}" data-kop="${k.id}" data-zing="${nr}">
+                    <span class="nr">${nr}</span><span>${saugu(z)}</span>
+                  </button>`;
+        }).join('')}
+      </div>
+    </div>`;
+  });
+
+  $('igudziai').innerHTML = h;
+
+  $('igudziai').querySelectorAll('.kop[data-kop] .kop-galva').forEach(g2 => {
+    g2.addEventListener('click', () => g2.closest('.kop').classList.toggle('on'));
+  });
+  $('igudziai').querySelectorAll('.zing').forEach(z => {
+    z.addEventListener('click', () => {
+      const id = z.dataset.kop, nr = Number(z.dataset.zing);
+      const dabar = igudziai[id] ? igudziai[id].zingsnis : 0;
+      // paspaudei ten, kur jau esi -> grįžti žingsniu atgal
+      const naujas = (dabar === nr) ? nr - 1 : nr;
+      if(naujas === 0) delete igudziai[id];
+      else igudziai[id] = { zingsnis: naujas, data: siandienRaktas() };
+      rasyti('igudziai', igudziai);
+      piestiIgudzius();
+      const atgal = $('igudziai').querySelector('.kop[data-kop="'+id+'"]');
+      if(atgal) atgal.classList.add('on');
+    });
+  });
+}
+
+function piestiRekIstorija(){
+  const eile = rekordai.slice().sort((a,b) => b.data.localeCompare(a.data)).slice(0, 30);
+  if(!eile.length){ $('rekIstorija').innerHTML = '<div class="empty"><p>Tuščia.</p></div>'; return; }
+  $('rekIstorija').innerHTML = '<div class="list">' + eile.map(r => {
+    const i = rekordai.indexOf(r);
+    return `
+    <div class="item">
+      <div class="txt">
+        <div class="pav">${saugu(r.pratimas)}</div>
+        <div class="sub">${raktasTrumpai(r.data)}</div>
+      </div>
+      <div class="val"><b>${desimtis(r.kg)}</b> kg <span>× ${r.kart}</span></div>
+      <button class="x" data-rek="${i}" aria-label="Pašalinti">&times;</button>
+    </div>`;
+  }).join('') + '</div>';
+  $('rekIstorija').querySelectorAll('[data-rek]').forEach(b => {
+    b.addEventListener('click', () => {
+      rekordai.splice(Number(b.dataset.rek), 1);
+      rasyti('rekordai', rekordai);
+      perpiestiJega();
+    });
+  });
+}
+
+function perpiestiJega(){ piestiRekordus(); piestiIgudzius(); piestiRekIstorija(); }
+
+/* --- rekordo lapelis --- */
+function atidarytiRekorda(){
+  const sel = $('r-pratimas');
+  sel.innerHTML = pratimuSarasas().map(p => `<option>${saugu(p)}</option>`).join('')
+    + '<option value="__kitas">Kitas…</option>';
+  $('r-kitas-eil').hidden = true;
+  $('r-kitas').value = '';
+  $('r-kg').value = ''; $('r-kart').value = '';
+  $('r-data').value = siandienRaktas();
+  $('r-data').max = siandienRaktas();
+  $('r-err').textContent = '';
+  $('bg3').classList.add('on');
+  $('sheet3').classList.add('on');
+}
+function uzdarytiRekorda(){
+  $('bg3').classList.remove('on');
+  $('sheet3').classList.remove('on');
+}
+$('pridetiRekorda').addEventListener('click', atidarytiRekorda);
+$('r-close').addEventListener('click', uzdarytiRekorda);
+$('bg3').addEventListener('click', uzdarytiRekorda);
+$('r-pratimas').addEventListener('change', e => {
+  $('r-kitas-eil').hidden = e.target.value !== '__kitas';
+  if(e.target.value === '__kitas') $('r-kitas').focus();
+});
+$('r-save').addEventListener('click', () => {
+  const sel = $('r-pratimas').value;
+  const pratimas = sel === '__kitas' ? $('r-kitas').value.trim() : sel;
+  const kg = parseFloat($('r-kg').value);
+  const kart = parseInt($('r-kart').value, 10);
+  const data = $('r-data').value;
+  if(!pratimas){ $('r-err').textContent = 'Parašyk pratimo pavadinimą.'; return; }
+  if(isNaN(kg) || kg < 0){ $('r-err').textContent = 'Įrašyk svorį (kūno svorio pratimams gali būti 0).'; return; }
+  if(isNaN(kart) || kart < 1){ $('r-err').textContent = 'Įrašyk kartojimus.'; return; }
+  if(!data || data > siandienRaktas()){ $('r-err').textContent = 'Data negali būti ateityje.'; return; }
+  rekordai.push({ pratimas, kg: desimtis(kg), kart, data });
+  rasyti('rekordai', rekordai);
+  uzdarytiRekorda();
+  perpiestiJega();
+});
+
+/* =========================================================
+   12. TIKSLAI, SERIJOS IR PRIMINIMAI
+   =========================================================
+   Beveik viską programėlė žino pati — nieko papildomai vesti nereikia.
+   Vienintelė išimtis: ar buvai salėje (vienas paspaudimas). */
+const SAV_TRENIRUOTES = 6;   // PPL 6x per savaitę
+const KOPIJOS_DIENOS  = 7;   // kas kiek dienų priminti apie atsarginę kopiją
+
+function savaitesDienos(){          // paskutinės 7 dienos, įskaitant šiandien
+  const r = [], s = datalsRakto(siandienRaktas());
+  for(let i = 0; i < 7; i++) r.push(raktasIsDatos(pridetiDienas(s, -i)));
+  return r;
+}
+function svorioSerija(){            // iš eilės einančios dienos su svėrimu
+  let n = 0, d = datalsRakto(siandienRaktas());
+  // šiandien dar gali būti nepasvertas — tada skaičiuojam nuo vakar
+  if(svoriai[raktasIsDatos(d)] === undefined) d = pridetiDienas(d, -1);
+  while(svoriai[raktasIsDatos(d)] !== undefined){ n++; d = pridetiDienas(d, -1); }
+  return n;
+}
+function dienosTikslai(){
+  const r = siandienRaktas();
+  const s = (dienos[r] || []).reduce((a,v) => ({
+    kcal:a.kcal+v.kcal, b:a.b+v.b
+  }), {kcal:0, b:0});
+  const dalis = (a,b) => b > 0 ? a/b : 0;
+  return [
+    { id:'svoris', pav:'Pasisverti', ok: svoriai[r] !== undefined,
+      sub: svoriai[r] !== undefined ? svoriai[r].toFixed(1) + ' kg' : 'ryte, prieš pusryčius' },
+    { id:'kcal', pav:'Kalorijos', ok: dalis(s.kcal, tikslai.kcal) >= 0.95,
+      sub: sveikas(s.kcal) + ' / ' + tikslai.kcal + ' kcal' },
+    { id:'baltymai', pav:'Baltymai', ok: dalis(s.b, tikslai.prot) >= 0.95,
+      sub: sveikas(s.b) + ' / ' + tikslai.prot + ' g' },
+    { id:'treniruote', pav:'Treniruotė', ok: !!treniruotes[r], spaudz:true,
+      sub: treniruotes[r] ? 'padaryta' : 'paspausk, kai grįši iš salės' }
+  ];
+}
+function piestiTikslus(){
+  const sar = dienosTikslai();
+  const padaryta = sar.filter(x => x.ok).length;
+  $('tik-santrauka').textContent = padaryta + '/' + sar.length;
+  $('tikslaiSarasas').innerHTML = sar.map(x => `
+    <${x.spaudz ? 'button' : 'div'} class="tik${x.ok ? ' ok' : ''}${x.spaudz ? ' spaudz' : ''}"
+        ${x.spaudz ? 'data-tik="' + x.id + '"' : ''}>
+      <span class="zenklas">${x.ok ? '✓' : ''}</span>
+      <span class="txt"><span class="pav">${saugu(x.pav)}</span>
+        <span class="sub">${saugu(x.sub)}</span></span>
+    </${x.spaudz ? 'button' : 'div'}>`).join('');
+  $('tikslaiSarasas').querySelectorAll('[data-tik=treniruote]').forEach(b => {
+    b.addEventListener('click', () => {
+      const r = siandienRaktas();
+      if(treniruotes[r]) delete treniruotes[r]; else treniruotes[r] = true;
+      rasyti('treniruotes', treniruotes);
+      piestiTikslus();
+    });
+  });
+  $('ser-svoris').textContent = svorioSerija();
+  const sav = savaitesDienos().filter(d => treniruotes[d]).length;
+  $('sav-treniruotes').textContent = sav + '/' + SAV_TRENIRUOTES;
+}
+
+/* --- priminimai programėlės viduje --- */
+function piestiPriminimus(){
+  const r = siandienRaktas(), val = [];
+  const s = (dienos[r] || []).reduce((a,v) => ({kcal:a.kcal+v.kcal, b:a.b+v.b}), {kcal:0,b:0});
+  const valanda = new Date().getHours();
+
+  // 1) atsarginė kopija — svarbiausias, nes praradus viską atkurti neįmanoma
+  const pask = kopijos.paskutine;
+  const praejo = pask ? dienuNuo(pask) : null;
+  if(praejo === null){
+    val.push({ svarbu:true, t:'<b>Dar nedarei atsarginės kopijos.</b> Viskas laikoma tik šioje naršyklėje — išvalei duomenis ir viskas dingo. Produktai → Išsaugoti kopiją.' });
+  } else if(praejo >= KOPIJOS_DIENOS){
+    val.push({ svarbu:true, t:'<b>Kopija daryta prieš ' + praejo + ' d.</b> Laikas naujai — Produktai → Išsaugoti kopiją.' });
+  }
+  // 2) rytinis svėrimas
+  if(svoriai[r] === undefined && valanda >= 9){
+    val.push({ t:'Šiandien dar nepasisvėrei. Jei jau pavalgei — praleisk, rytoj ryte.' });
+  }
+  // 3) vakarinis kalorijų likutis
+  if(valanda >= 19){
+    const truksta = tikslai.kcal - s.kcal;
+    if(truksta > 300 && s.kcal > 0){
+      val.push({ t:'Iki tikslo trūksta <b>' + sveikas(truksta) + ' kcal</b>. Auginant masę nepavalgyta diena kainuoja daugiau nei persivalgyta.' });
+    }
+    const truksB = tikslai.prot - s.b;
+    if(truksB > 25 && s.b > 0){
+      val.push({ t:'Baltymų trūksta <b>' + sveikas(truksB) + ' g</b>. Varškė arba kazeinas prieš miegą uždaro tarpą.' });
+    }
+  }
+  $('nudges').innerHTML = val.map(v =>
+    `<div class="nudge${v.svarbu ? ' perspejimas' : ''}">${v.t}</div>`).join('');
+}
+
+/* --- rankinis įrašas: kai pats suskaičiavai sumas --- */
+function uzdarytiRanka(){
+  $('bg4').classList.remove('on');
+  $('sheet4').classList.remove('on');
+}
+$('ivestiRanka').addEventListener('click', () => {
+  ['rk-pav','rk-kcal','rk-b','rk-a','rk-r'].forEach(id => $(id).value = '');
+  $('rk-err').textContent = '';
+  $('bg4').classList.add('on');
+  $('sheet4').classList.add('on');
+  $('rk-kcal').focus();
+});
+$('rk-close').addEventListener('click', uzdarytiRanka);
+$('bg4').addEventListener('click', uzdarytiRanka);
+$('rk-save').addEventListener('click', () => {
+  const kcal = parseFloat($('rk-kcal').value) || 0;
+  const b = parseFloat($('rk-b').value) || 0;
+  const a = parseFloat($('rk-a').value) || 0;
+  const r = parseFloat($('rk-r').value) || 0;
+  if(kcal <= 0 && b <= 0 && a <= 0 && r <= 0){
+    $('rk-err').textContent = 'Įrašyk bent vieną skaičių.';
+    return;
+  }
+  siandienosValgiai().push({
+    pav: $('rk-pav').value.trim() || 'Įrašyta ranka',
+    g: 0, kcal, b, a, r
+  });
+  rasyti('dienos', dienos);
+  uzdarytiRanka();
+  perpiesti();
+  perpiestiSvori();
+});
+
+/* =========================================================
+   13. AUTOMATINIAI TIKSLAI
+   =========================================================
+   Užuot spėliojus formule (kuri individui klysta ±15%), skaičiuojame
+   iš tikrų duomenų: kiek suvalgai vs. kiek pasikeitė svoris.
+
+     palaikymas = vidutinis suvartojimas − (svorio pokytis × 7700 ÷ 7)
+
+   Baltymai ir riebalai skaičiuojami nuo dabartinio svorio, todėl
+   augant masei jie kyla patys. Angliavandeniai — kas lieka.
+   Perskaičiuojama kartą per savaitę: dažniau reikštų vaikytis triukšmą. */
+const PERTEKLIUS   = 250;   // kcal virš palaikymo — švarus masės auginimas
+const BALTYMU_KG   = 2.2;   // g/kg — daugiau nueina veltui
+const RIEBALU_KG   = 1.3;   // g/kg — žemiau 60 g nesileisti
+const PERSKAIC_KAS = 7;     // dienos
+
+function automatiniaiTikslai(){
+  const t = tikrasTDEE();
+  if(!t) return null;
+  const sv = langoVidurkis(siandienRaktas(), 7);
+  if(sv === null) return null;
+  const kcal = Math.round((t.tdee + PERTEKLIUS) / 10) * 10;
+  const prot = Math.round(BALTYMU_KG * sv);
+  const fat  = Math.max(60, Math.round(RIEBALU_KG * sv));
+  // likusios kalorijos -> gramai (4 kcal/g), suapvalinta iki 5 g
+  const carb = Math.max(0, Math.round((kcal - prot*4 - fat*9) / 4 / 5) * 5);
+  return { kcal, prot, carb, fat, tdee:t.tdee, suvartojimas:t.suvartojimas,
+           dienos:t.dienos, svoris:sv };
+}
+
+function taikytiAutomatinius(){
+  if(!tikslai.auto) return false;
+  const a = automatiniaiTikslai();
+  if(!a) return false;
+  if(tikslai.autoData && dienuNuo(tikslai.autoData) < PERSKAIC_KAS) return false;
+  tikslai.kcal = a.kcal; tikslai.prot = a.prot;
+  tikslai.carb = a.carb; tikslai.fat  = a.fat;
+  tikslai.autoData = siandienRaktas();
+  rasyti('tikslai', tikslai);
+  return true;
+}
+
+function piestiRezima(){
+  $('rez-auto').classList.toggle('on', !!tikslai.auto);
+  $('rez-rankinis').classList.toggle('on', !tikslai.auto);
+  $('normos').classList.toggle('uzrakinta', !!tikslai.auto);
+  Object.values(laukai).forEach(id => { $(id).readOnly = !!tikslai.auto; });
+
+  const vieta = $('auto-info');
+  if(!tikslai.auto){
+    vieta.innerHTML = '<div class="auto-info laukia">Normas nustatai pats. ' +
+      'Įjungęs <b>Automatinį</b> leisi programėlei kas savaitę perskaičiuoti jas ' +
+      'iš tavo tikro suvartojimo ir svorio pokyčio.</div>';
+    return;
+  }
+  const a = automatiniaiTikslai();
+  if(!a){
+    const t = tikrasTDEE();
+    const truksta = [];
+    const sav = savaitesPokytis();
+    if(sav === null) truksta.push('bent po 3 svėrimus dvi savaites iš eilės');
+    if(!t || t === null){
+      let n = 0;
+      for(let i = 1; i <= 13; i++){
+        const r = raktasIsDatos(pridetiDienas(datalsRakto(siandienRaktas()), -i));
+        if(dienos[r] && dienos[r].length) n++;
+      }
+      if(n < 10) truksta.push('bent 10 užpildytų maisto dienų (dabar ' + n + ')');
+    }
+    vieta.innerHTML = '<div class="auto-info laukia"><b>Dar neužtenka duomenų.</b> ' +
+      'Trūksta: ' + (truksta.join(' ir ') || 'dar kelių dienų') + '. ' +
+      'Kol kas galioja rankiniu būdu nustatytos normos.</div>';
+    return;
+  }
+  const kada = tikslai.autoData
+    ? Math.max(0, PERSKAIC_KAS - dienuNuo(tikslai.autoData)) : 0;
+  vieta.innerHTML = '<div class="auto-info">' +
+    'Tavo <b>tikras palaikymas ~' + a.tdee + ' kcal</b> — išmatuotas iš <b>' + a.dienos +
+    '</b> dienų suvartojimo (vid. ' + a.suvartojimas + ' kcal) prieš tikrą svorio pokytį. ' +
+    'Prie jo pridėta ' + PERTEKLIUS + ' kcal masei auginti.<br><br>' +
+    'Baltymai ir riebalai skaičiuojami nuo <b>' + a.svoris.toFixed(1) + ' kg</b> ' +
+    '(' + BALTYMU_KG + ' ir ' + RIEBALU_KG + ' g/kg), angliavandeniai — kas lieka. ' +
+    'Augant svoriui jie kils patys.<br><br>' +
+    (kada > 0
+      ? 'Kitas perskaičiavimas po <b>' + kada + ' d.</b>'
+      : '<b>Perskaičiuojama šiandien.</b>') +
+    '</div>';
+}
+
+$('rez-auto').addEventListener('click', () => {
+  tikslai.auto = true;
+  tikslai.autoData = null;            // perskaičiuoti iškart
+  rasyti('tikslai', tikslai);
+  taikytiAutomatinius();
+  uzpildytiLaukus(); piestiRezima(); perpiesti(); perpiestiSvori();
+});
+$('rez-rankinis').addEventListener('click', () => {
+  tikslai.auto = false;
+  rasyti('tikslai', tikslai);
+  uzpildytiLaukus(); piestiRezima(); perpiesti();
+});
+
+/* =========================================================
+   14. PALEIDIMAS
    ========================================================= */
 // service worker — be jo programėlė neįsirašo į telefoną ir neveikia be interneto
 if('serviceWorker' in navigator){
@@ -1064,11 +1700,14 @@ if('serviceWorker' in navigator){
 }
 $('date').textContent =
   new Date().toLocaleDateString('lt-LT', { month:'long', day:'numeric' });
+taikytiAutomatinius();
 uzpildytiLaukus();
+piestiRezima();
 piestiProduktus();
 perpiesti();
 paruostiSvorioLaukus();
 perpiestiSvori();
+perpiestiJega();
 </script>
 </body>
 </html>
