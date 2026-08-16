@@ -3,7 +3,7 @@
 
    SVARBU: pakeitei index.html? Pakelk CACHE numerį (v3 -> v4),
    kitaip telefonas ir toliau rodys seną versiją. */
-const CACHE = 'maisto-baze-v4';
+const CACHE = 'maisto-baze-v7';
 const FAILAI = [
   './',
   './index.html',
